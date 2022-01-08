@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class ExpenseRepository @Inject constructor(private val database: AppDatabase) {
 
-    
+
 }
