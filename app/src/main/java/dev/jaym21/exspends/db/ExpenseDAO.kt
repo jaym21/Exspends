@@ -1,6 +1,7 @@
-package dev.jaym21.exspends.db.models
+package dev.jaym21.exspends.db
 
 import androidx.room.*
+import dev.jaym21.exspends.db.models.Expense
 import kotlinx.coroutines.flow.Flow
 
 @Dao
