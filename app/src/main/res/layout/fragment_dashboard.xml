@@ -21,7 +21,7 @@
         android:id="@+id/cvTotalExpenses"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:cardBackgroundColor="#232323"
+        app:cardBackgroundColor="@color/bg_color_light"
         app:cardCornerRadius="10dp"
         android:layout_margin="20dp"
         android:layout_below="@id/tvDashboardText">
@@ -46,7 +46,7 @@
                 android:id="@+id/tvTotalExpenses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₹20,000"
+                tools:text="₹20,000"
                 android:textSize="25sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_bold"/>
@@ -71,5 +71,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvLatestExpensesText"
         android:layout_marginTop="10dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/purple_500"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
