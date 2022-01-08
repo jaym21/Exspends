@@ -1,8 +1,10 @@
 package dev.jaym21.exspends.db.models
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.text.DateFormat
 
+@Entity(tableName = "expenses_table")
 data class Expense(
     val title: String,
     val amount: Double,
