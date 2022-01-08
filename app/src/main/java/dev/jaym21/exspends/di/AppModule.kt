@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.jaym21.exspends.db.AppDatabase
+import dev.jaym21.exspends.data.db.AppDatabase
 import javax.inject.Singleton
 
 @Module

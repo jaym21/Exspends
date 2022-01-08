@@ -1,4 +1,4 @@
-package dev.jaym21.exspends.db.models
+package dev.jaym21.exspends.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
