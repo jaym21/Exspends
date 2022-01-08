@@ -1,10 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DashboardFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.DashboardFragment"
+    android:background="@color/bg_color"
+    android:padding="16dp">
 
+    <TextView
+        android:id="@+id/tvDashboardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dashboard"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_bold" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvTotalExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:cardBackgroundColor="#232323"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="20dp"
+        android:layout_below="@id/tvDashboardText">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvTotalExpensesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Expenses"
+                android:textSize="13sp"
+                android:textColor="@color/text_color_light"
+                android:fontFamily="@font/redhat_regular"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tvTotalExpenses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹20,000"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_bold"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvLatestExpensesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latest Expenses"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_semibold"
+        android:layout_below="@id/cvTotalExpenses" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLatestExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLatestExpensesText" />
+
+</RelativeLayout>
