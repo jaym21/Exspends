@@ -18,16 +18,18 @@
 
     <color name="green">#17B978</color>
     <color name="green_transparent">#3317B978</color>
-    <color name="blue">#0288D1</color>
-    <color name="blue_transparent">#330288D1</color>
-    <color name="red">#D50000</color>
-    <color name="red_transparent">#33D32F2F</color>
-    <color name="yellow">#FBC02D</color>
+    <color name="red">#ff3838</color>
+    <color name="red_transparent">#33FF3838</color>
+    <color name="yellow">#fbc02d</color>
     <color name="yellow_transparent">#33FBC02D</color>
-    <color name="blue_dark">#0004FF</color>
-    <color name="blue_dark_transparent">#330004FF</color>
+    <color name="blue">#3b3eff</color>
+    <color name="blue_transparent">#333B3EFF</color>
     <color name="purple">#FF6200EE</color>
     <color name="purple_transparent">#336200EE</color>
+    <color name="orange">#FF8C00</color>
+    <color name="orange_transparent">#33FF8C00</color>
+    <color name="pink">#ff62ff</color>
+    <color name="pink_transparent">#33FF62FF</color>
     <color name="grey">#808080</color>
     <color name="grey_transparent">#33808080</color>
 </resources>
