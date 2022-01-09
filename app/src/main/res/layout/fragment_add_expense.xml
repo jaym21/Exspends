@@ -187,6 +187,19 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
+                android:id="@+id/tvPersonalExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Expense"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_personal_notselected_bg"
+                android:padding="10dp"
+                android:layout_below="@id/tvEntertainment"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
                 android:id="@+id/tvOthers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,8 +209,9 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_others_notselected_bg"
                 android:padding="10dp"
-                android:layout_below="@id/tvEntertainment"
-                android:layout_marginTop="10dp"/>
+                android:layout_toEndOf="@id/tvPersonalExpense"
+                android:layout_alignBottom="@id/tvPersonalExpense"
+                android:layout_marginStart="10dp"/>
 
         </RelativeLayout>
 

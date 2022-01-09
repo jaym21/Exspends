@@ -53,15 +53,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
             openDatePicker()
         }
 
-        //adding category onClick listeners
-        binding.tvGroceries.setOnClickListener(this)
-        binding.tvShopping.setOnClickListener(this)
-        binding.tvSubscription.setOnClickListener(this)
-        binding.tvEntertainment.setOnClickListener(this)
-        binding.tvEatingOut.setOnClickListener(this)
-        binding.tvTravel.setOnClickListener(this)
-        binding.tvOthers.setOnClickListener(this)
-
+        initializeOnClick()
 
         binding.btnAddExpense.setOnClickListener {
             if (checkAllFieldsEntered()) {
@@ -115,6 +107,18 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    //adding category onClick listeners
+    private fun initializeOnClick() {
+        binding.tvGroceries.setOnClickListener(this)
+        binding.tvShopping.setOnClickListener(this)
+        binding.tvSubscription.setOnClickListener(this)
+        binding.tvEntertainment.setOnClickListener(this)
+        binding.tvEatingOut.setOnClickListener(this)
+        binding.tvTravel.setOnClickListener(this)
+        binding.tvPersonalExpense.setOnClickListener(this)
+        binding.tvOthers.setOnClickListener(this)
+    }
+
     override fun onClick(view: View) {
         when(view.id) {
             R.id.tvGroceries -> {
@@ -125,6 +129,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvShopping -> {
@@ -135,6 +140,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvSubscription -> {
@@ -145,6 +151,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvEntertainment -> {
@@ -155,6 +162,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_selected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvEatingOut -> {
@@ -165,6 +173,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_selected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvTravel -> {
@@ -175,6 +184,18 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_selected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
+            }
+            R.id.tvPersonalExpense -> {
+                categorySelected = "personal"
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_selected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             R.id.tvOthers -> {
@@ -185,6 +206,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
                 binding.tvEatingOut.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_eatingout_notselected_bg)
                 binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvPersonalExpense.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_selected_bg)
             }
         }

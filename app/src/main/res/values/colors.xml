@@ -28,8 +28,8 @@
     <color name="purple_transparent">#336200EE</color>
     <color name="orange">#FF8C00</color>
     <color name="orange_transparent">#33FF8C00</color>
-    <color name="pink">#ff62ff</color>
-    <color name="pink_transparent">#33FF62FF</color>
+    <color name="turquoise">#00CED1</color>
+    <color name="turquoise_transparent">#3300CED1</color>
     <color name="grey">#808080</color>
     <color name="grey_transparent">#33808080</color>
 </resources>
