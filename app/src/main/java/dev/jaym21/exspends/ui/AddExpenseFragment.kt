@@ -9,20 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
+import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentAddExpenseBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class AddExpenseFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentAddExpenseBinding? = null
     private val binding: FragmentAddExpenseBinding
         get() = _binding!!
     private lateinit var navController: NavController
+    private val expenseViewModel: ExpenseViewModel by activityViewModels()
     private var categorySelected: String? = null
 
     override fun onCreateView(
@@ -59,7 +64,9 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
 
         binding.btnAddExpense.setOnClickListener {
             if (checkAllFieldsEntered()) {
-                Log.d("TAGYOYO", "${binding.etExpenseTitle.text} ${binding.etExpenseAmount.text} ${binding.etExpenseDate.text} $categorySelected")
+                val newExpense = Expense(binding.etExpenseTitle.text.toString(), binding.etExpenseAmount.text.toString().toDouble(), categorySelected!!, binding.etExpenseDate.text.toString())
+                expenseViewModel.addExpense(newExpense)
+                navController.popBackStack()
             }
         }
     }
