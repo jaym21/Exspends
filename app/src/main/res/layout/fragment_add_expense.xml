@@ -1,34 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.AddExpenseFragment"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    android:padding="16dp">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back_arrow"
+        app:tint="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Expense"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_semibold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp" />
+
+    <LinearLayout
+        android:id="@+id/llExpenseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_back_arrow"
-            app:tint="@color/white"/>
+        android:orientation="vertical"
+        android:layout_below="@id/ivBack"
+        android:layout_marginTop="30dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Expense"
-            android:textSize="16sp"
+            android:text="Title"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <EditText
+            android:id="@+id/etExpenseTitle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="15sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/redhat_semibold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="6dp" />
+            android:fontFamily="@font/redhat_regular"
+            android:background="@drawable/edittext_bg"
+            android:inputType="text|textNoSuggestions"
+            android:padding="5dp"
+            android:layout_marginTop="6dp"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</ScrollView>
+    <LinearLayout
+        android:id="@+id/llExpenseAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llExpenseTitle"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amount"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <EditText
+            android:id="@+id/etExpenseAmount"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_regular"
+            android:background="@drawable/edittext_bg"
+            android:inputType="numberDecimal|textNoSuggestions"
+            android:padding="5dp"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpenseCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llExpenseAmount"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Category"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvGroceries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Groceries"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_groceries_notselected_bg"
+                android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/tvShopping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shopping"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_shopping_notselected_bg"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/tvGroceries"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tvSubscription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subscriptions"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_subscription_notselected_bg"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/tvShopping"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tvEatingOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eating Out"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_eatingout_notselected_bg"
+                android:padding="10dp"
+                android:layout_below="@id/tvGroceries"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvTravel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_travel_notselected_bg"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/tvEatingOut"
+                android:layout_alignBottom="@id/tvEatingOut"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tvOthers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_regular"
+                android:background="@drawable/category_others_notselected_bg"
+                android:padding="10dp"
+                android:layout_toEndOf="@id/tvTravel"
+                android:layout_alignBottom="@id/tvTravel"
+                android:layout_marginStart="10dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpenseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llExpenseCategory"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <EditText
+            android:id="@+id/etExpenseDate"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_regular"
+            android:background="@drawable/edittext_bg"
+            android:inputType="date|textNoSuggestions"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:drawableTint="@color/white_alpha_80"
+            android:focusable="false"
+            android:clickable="true"
+            android:focusableInTouchMode="false"
+            android:padding="5dp"
+            android:layout_marginTop="6dp"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Add Expense"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/redhat_semibold"
+        app:cornerRadius="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

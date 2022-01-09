@@ -30,26 +30,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tvTotalExpensesText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Expenses"
-                android:textSize="13sp"
-                android:textColor="@color/text_color_light"
-                android:fontFamily="@font/redhat_regular"
-                android:layout_marginBottom="5dp"/>
+            android:gravity="center_vertical"
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/tvTotalExpenses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="₹20,000"
-                android:textSize="25sp"
+                android:textSize="35sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_bold"/>
+
+
+            <TextView
+                android:id="@+id/tvTotalExpensesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Expenses"
+                android:textSize="15sp"
+                android:textColor="@color/text_color_light"
+                android:fontFamily="@font/redhat_semibold"
+                android:layout_marginBottom="5dp"/>
 
         </LinearLayout>
 
