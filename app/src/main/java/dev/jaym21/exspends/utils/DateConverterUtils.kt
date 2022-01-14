@@ -8,7 +8,6 @@ class DateConverterUtils {
     companion object {
 
         fun getTimestamp(date: String): Long {
-            //format of the date
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
             val parsedDate = sdf.parse(date)
             return parsedDate.time

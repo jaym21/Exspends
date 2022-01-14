@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_color"
     android:paddingStart="12dp"
@@ -10,30 +9,23 @@
     android:paddingTop="14dp"
     android:paddingBottom="14dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvCategoryIcon"
+    <LinearLayout
+        android:id="@+id/llCategoryIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:cardBackgroundColor="@color/green_transparent"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="10dp">
+        android:orientation="vertical"
+        android:background="@drawable/groceries_icon_bg"
+        android:padding="16dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            tools:src="@drawable/ic_groceries"
+            tools:tint="@color/green"/>
 
-            <ImageView
-                android:id="@+id/ivCategoryIcon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                tools:src="@drawable/ic_groceries"
-                tools:tint="@color/green"/>
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tvExpenseTitle"
@@ -44,7 +36,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/redhat_semibold"
         android:maxLines="2"
-        android:layout_toEndOf="@id/cvCategoryIcon"
+        android:layout_toEndOf="@id/llCategoryIcon"
         android:layout_toStartOf="@id/tvExpenseAmount"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="8dp"
@@ -58,7 +50,7 @@
         android:textSize="13sp"
         android:textColor="@color/white_alpha_60"
         android:fontFamily="@font/redhat_regular"
-        android:layout_toEndOf="@id/cvCategoryIcon"
+        android:layout_toEndOf="@id/llCategoryIcon"
         android:layout_below="@id/tvExpenseTitle"
         android:layout_toStartOf="@id/tvExpenseDate"
         android:layout_marginStart="10dp"

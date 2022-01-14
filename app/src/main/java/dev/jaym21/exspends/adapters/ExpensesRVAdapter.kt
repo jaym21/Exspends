@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.card.MaterialCardView
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.utils.DateConverterUtils
@@ -28,7 +28,7 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
     }
 
     inner class ExpenseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val categoryCard: MaterialCardView = itemView.findViewById(R.id.cvCategoryIcon)
+        val categoryCard: LinearLayout = itemView.findViewById(R.id.llCategoryIcon)
         val categoryIcon: ImageView = itemView.findViewById(R.id.ivCategoryIcon)
         val title: TextView = itemView.findViewById(R.id.tvExpenseTitle)
         val amount: TextView = itemView.findViewById(R.id.tvExpenseAmount)
@@ -49,42 +49,41 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
         val dateTimestamp = DateConverterUtils.getTimestamp(currentItem.date)
         holder.date.text = DateConverterUtils.convertDateFormat(dateTimestamp)
 
-
         when(currentItem.category) {
             "groceries" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_groceries).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.green))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.green_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.groceries_icon_bg)
             }
             "shopping" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_shopping).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.blue))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.blue_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.shopping_icon_bg)
             }
             "subscription" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_subscriptions).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.orange))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.orange_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.subscriptions_icon_bg)
             }
             "restaurant" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_eatingout).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.purple))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.purple_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.restaurant_icon_bg)
             }
             "travel" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_travel).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.yellow))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.yellow_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.travel_icon_bg)
             }
             "bills" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_personal).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.turquoise))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.turquoise_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.bills_icon_bg)
             }
             "others" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_others).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.grey))
-                holder.categoryCard.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.grey_transparent))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.others_icon_bg)
             }
         }
     }
