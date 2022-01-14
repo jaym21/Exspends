@@ -79,7 +79,7 @@
         android:id="@+id/tvExpenseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="14 Jan 2022"
+        tools:text="Jan 14, 2022"
         android:textSize="12sp"
         android:textColor="@color/white_alpha_60"
         android:fontFamily="@font/redhat_regular"

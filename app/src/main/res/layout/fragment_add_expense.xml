@@ -159,14 +159,14 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/tvEatingOut"
+                android:id="@+id/tvRestaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eating Out"
+                android:text="Restaurant"
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_regular"
-                android:background="@drawable/category_eatingout_notselected_bg"
+                android:background="@drawable/category_restaurant_notselected_bg"
                 android:padding="10dp"
                 android:layout_toEndOf="@id/tvEntertainment"
                 android:layout_alignBottom="@id/tvEntertainment"
@@ -182,15 +182,15 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_travel_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvEatingOut"
-                android:layout_alignBottom="@id/tvEatingOut"
+                android:layout_toEndOf="@id/tvRestaurant"
+                android:layout_alignBottom="@id/tvRestaurant"
                 android:layout_marginStart="10dp"/>
 
             <TextView
-                android:id="@+id/tvPersonalExpense"
+                android:id="@+id/tvBills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Personal Expense"
+                android:text="Bills"
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_regular"
@@ -209,8 +209,8 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_others_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvPersonalExpense"
-                android:layout_alignBottom="@id/tvPersonalExpense"
+                android:layout_toEndOf="@id/tvBills"
+                android:layout_alignBottom="@id/tvBills"
                 android:layout_marginStart="10dp"/>
 
         </RelativeLayout>
