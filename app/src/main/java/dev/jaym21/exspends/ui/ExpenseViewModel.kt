@@ -3,7 +3,7 @@ package dev.jaym21.exspends.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.jaym21.exspends.data.ExpenseRepository
+import dev.jaym21.exspends.data.repository.ExpenseRepository
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.Dispatchers

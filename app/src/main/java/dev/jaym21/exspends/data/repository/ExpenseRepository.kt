@@ -1,4 +1,4 @@
-package dev.jaym21.exspends.data
+package dev.jaym21.exspends.data.repository
 
 import dev.jaym21.exspends.data.db.AppDatabase
 import dev.jaym21.exspends.data.models.Expense
