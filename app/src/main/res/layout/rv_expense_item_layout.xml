@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bg_color"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvCategoryIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:cardBackgroundColor="@color/green_transparent"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/ivCategoryIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                tools:src="@drawable/ic_groceries"
+                tools:tint="@color/green"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvExpenseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Bought groceries"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_semibold"
+        android:maxLines="2"
+        android:layout_toEndOf="@id/cvCategoryIcon"
+        android:layout_toStartOf="@id/tvExpenseAmount"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tvExpenseCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Groceries"
+        android:textSize="13sp"
+        android:textColor="@color/white_alpha_60"
+        android:fontFamily="@font/redhat_regular"
+        android:layout_toEndOf="@id/cvCategoryIcon"
+        android:layout_below="@id/tvExpenseTitle"
+        android:layout_toStartOf="@id/tvExpenseDate"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/tvExpenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="\u20B9300"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/tvExpenseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="14 Jan 2022"
+        android:textSize="12sp"
+        android:textColor="@color/white_alpha_60"
+        android:fontFamily="@font/redhat_regular"
+        android:layout_below="@id/tvExpenseAmount"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp" />
+
+</RelativeLayout>
