@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jaym21.exspends.R
+import dev.jaym21.exspends.adapters.ExpensesRVAdapter
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -16,6 +18,7 @@ class DashboardFragment : Fragment() {
     private val binding: FragmentDashboardBinding
         get() = _binding!!
     private lateinit var navController: NavController
+    private var expensesAdapter = ExpensesRVAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +37,15 @@ class DashboardFragment : Fragment() {
 
         binding.fabAddExpense.setOnClickListener {
             navController.navigate(R.id.action_dashboardFragment_to_addExpenseFragment)
+        }
+
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        binding.rvLatestExpenses.apply {
+            adapter = expensesAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
     }
 
