@@ -59,8 +59,12 @@ class DashboardFragment : Fragment() {
                 when(it) {
                     is ExpenseState.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        expensesAdapter.submitList(it.expenses)
-                        Log.d("TAGYOYO", "onViewCreated: ${it.expenses}")
+                        val expenses = if (it.expenses.size > 10) {
+                            it.expenses.subList(0, 10)
+                        } else {
+                            it.expenses
+                        }
+                        expensesAdapter.submitList(expenses)
                     }
                     is ExpenseState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
