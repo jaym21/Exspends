@@ -15,7 +15,7 @@ class DateConverterUtils {
 
         fun convertDateFormat(timestamp: Long): String {
             val sdf = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
-            return sdf.format(timestamp * 1000)
+            return sdf.format(timestamp)
         }
     }
 }
