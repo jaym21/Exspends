@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
+import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.flow.collect
@@ -27,6 +28,14 @@ class DashboardFragment : Fragment() {
     private var expensesAdapter = ExpensesRVAdapter()
     private lateinit var viewModel: ExpenseViewModel
     private var totalExpenses = 0.0
+    private var totalGroceries = 0.0
+    private var totalShopping = 0.0
+    private var totalSubscriptions = 0.0
+    private var totalEntertainment = 0.0
+    private var totalRestaurant = 0.0
+    private var totalTravel = 0.0
+    private var totalBills = 0.0
+    private var totalOthers = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +68,7 @@ class DashboardFragment : Fragment() {
                 when(it) {
                     is ExpenseState.Success -> {
                         binding.progressBar.visibility = View.GONE
+                        //updating latest expenses
                         val latestExpenses = if (it.expenses.size > 10) {
                             it.expenses.subList(0, 10)
                         } else {
@@ -66,10 +76,12 @@ class DashboardFragment : Fragment() {
                         }
                         expensesAdapter.submitList(latestExpenses)
 
+                        //updating total expenses
                         it.expenses.forEach { expense ->
                             totalExpenses += expense.amount
                         }
                         binding.tvTotalExpenses.text = "₹$totalExpenses"
+                        updateCategoryTotal(it.expenses)
                     }
                     is ExpenseState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -77,6 +89,37 @@ class DashboardFragment : Fragment() {
                     is ExpenseState.Empty -> {
                         binding.progressBar.visibility = View.GONE
                     }
+                }
+            }
+        }
+    }
+
+    private fun updateCategoryTotal(expenses: List<Expense>) {
+        expenses.forEach { expense ->
+            when(expense.category) {
+                "groceries" -> {
+                    totalGroceries += expense.amount
+                }
+                "shopping" -> {
+                    totalShopping += expense.amount
+                }
+                "subscription" -> {
+                    totalSubscriptions += expense.amount
+                }
+                "entertainment" -> {
+                    totalEntertainment += expense.amount
+                }
+                "restaurant" -> {
+                    totalRestaurant += expense.amount
+                }
+                "travel" -> {
+                    totalTravel += expense.amount
+                }
+                "bills" -> {
+                    totalBills += expense.amount
+                }
+                "others" -> {
+                    totalOthers += expense.amount
                 }
             }
         }
