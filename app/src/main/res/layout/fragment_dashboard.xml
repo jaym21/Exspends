@@ -94,15 +94,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="40dp"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabAddExpense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add"
-                app:backgroundTint="@color/purple_500"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true" />
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
@@ -115,5 +106,16 @@
             </RelativeLayout>
 
     </ScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add"
+        app:tint="@color/bg_color"
+        app:backgroundTint="@color/purple_500"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
