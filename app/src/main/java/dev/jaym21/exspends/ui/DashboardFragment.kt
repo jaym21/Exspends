@@ -1,5 +1,6 @@
 package dev.jaym21.exspends.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +13,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
@@ -23,6 +26,7 @@ import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.flow.collect
+import kotlin.math.round
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
@@ -110,7 +114,12 @@ class DashboardFragment : Fragment() {
         binding.pieChart.setUsePercentValues(true)
         binding.pieChart.setDrawEntryLabels(false)
         binding.pieChart.setDrawCenterText(true)
+        binding.pieChart.isRotationEnabled = false
+        binding.pieChart.setTouchEnabled(false)
         binding.pieChart.highlightValues(null)
+        binding.pieChart.setEntryLabelColor(Color.WHITE)
+        binding.pieChart.setExtraOffsets(0f, 10f, 25f, 0f)
+        binding.pieChart.setEntryLabelTextSize(12f)
         binding.pieChart.setHoleColor(ContextCompat.getColor(requireContext(), R.color.bg_color))
         binding.pieChart.animateY(1400, Easing.EaseInOutQuad)
 
@@ -139,7 +148,24 @@ class DashboardFragment : Fragment() {
         dataSet.colors = colors
 
         val data = PieData(dataSet)
-        data.setValueFormatter(PercentFormatter())
+        data.setValueFormatter(CustomPercentFormatter())
+        data.setValueTextSize(10f)
+        data.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        //legend
+        val legend = binding.pieChart.legend
+        legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+        legend.orientation = Legend.LegendOrientation.VERTICAL
+        legend.form = Legend.LegendForm.CIRCLE
+        legend.formSize = 10f
+        legend.setDrawInside(false)
+        legend.xEntrySpace = 7f
+        legend.yEntrySpace = 0f
+        legend.yOffset = 30f
+        legend.textColor = ContextCompat.getColor(requireContext(), R.color.white_alpha_70)
+        legend.textSize = 12f
+
         binding.pieChart.data = data
         binding.pieChart.invalidate()
     }
@@ -179,6 +205,15 @@ class DashboardFragment : Fragment() {
         binding.rvLatestExpenses.apply {
             adapter = expensesAdapter
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        }
+    }
+
+    inner class CustomPercentFormatter: ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            if (value == 0.0f) {
+                return  ""
+            }
+            return "${"%.2f".format(value)}%"
         }
     }
 

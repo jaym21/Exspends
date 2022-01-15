@@ -8,95 +8,112 @@
     android:background="@color/bg_color"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvDashboardText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dashboard"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/redhat_bold" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvTotalExpenses"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:cardBackgroundColor="@color/bg_color_purple"
-        app:cardCornerRadius="10dp"
-        android:layout_margin="20dp"
-        android:layout_below="@id/tvDashboardText">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginStart="16dp">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvTotalExpenses"
+                android:id="@+id/tvDashboardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="₹20,000"
-                android:textSize="35sp"
+                android:text="Dashboard"
+                android:textSize="20sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/redhat_bold"/>
+                android:fontFamily="@font/redhat_bold" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvTotalExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:cardBackgroundColor="@color/bg_color_purple"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="20dp"
+                android:layout_below="@id/tvDashboardText">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvTotalExpenses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="₹20,000"
+                        android:textSize="35sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/redhat_bold"/>
+
+
+                    <TextView
+                        android:id="@+id/tvTotalExpensesText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Expenses"
+                        android:textSize="15sp"
+                        android:textColor="@color/text_color_light"
+                        android:fontFamily="@font/redhat_semibold"
+                        android:layout_marginBottom="5dp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/cvTotalExpenses"/>
 
             <TextView
-                android:id="@+id/tvTotalExpensesText"
+                android:id="@+id/tvLatestExpensesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Expenses"
-                android:textSize="15sp"
-                android:textColor="@color/text_color_light"
+                android:text="Latest Expenses"
+                android:textSize="16sp"
+                android:textColor="@color/white"
                 android:fontFamily="@font/redhat_semibold"
-                android:layout_marginBottom="5dp"/>
+                android:layout_below="@id/pieChart"
+                android:layout_marginTop="20dp"/>
 
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLatestExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:layout_below="@id/tvLatestExpensesText"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp"/>
 
-    </androidx.cardview.widget.CardView>
-    
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@id/cvTotalExpenses"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:backgroundTint="@color/purple_500"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true" />
 
-    <TextView
-        android:id="@+id/tvLatestExpensesText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Latest Expenses"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/redhat_semibold"
-        android:layout_below="@id/pieChart"
-        android:layout_marginTop="20dp"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/purple_500"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLatestExpenses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvLatestExpensesText"
-        android:layout_marginTop="10dp" />
+            </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddExpense"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/purple_500"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/purple_500"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone" />
+    </ScrollView>
 
 </RelativeLayout>
