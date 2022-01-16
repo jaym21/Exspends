@@ -65,6 +65,11 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.orange))
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.subscriptions_icon_bg)
             }
+            "entertainment" -> {
+                Glide.with(holder.itemView.context).load(R.drawable.ic_entertainment).into(holder.categoryIcon)
+                holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.red))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.entertainment_icon_bg)
+            }
             "restaurant" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_eatingout).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.purple))
