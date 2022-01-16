@@ -208,7 +208,7 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    inner class CustomPercentFormatter: ValueFormatter() {
+    class CustomPercentFormatter: ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
             if (value == 0.0f) {
                 return  ""
