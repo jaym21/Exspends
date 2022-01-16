@@ -36,15 +36,15 @@ class DashboardFragment : Fragment() {
     private lateinit var navController: NavController
     private var expensesAdapter = ExpensesRVAdapter()
     private lateinit var viewModel: ExpenseViewModel
-    private var totalExpenses = 0.0
-    private var totalGroceries = 0.0
-    private var totalShopping = 0.0
-    private var totalSubscriptions = 0.0
-    private var totalEntertainment = 0.0
-    private var totalRestaurant = 0.0
-    private var totalTravel = 0.0
-    private var totalBills = 0.0
-    private var totalOthers = 0.0
+//    private var totalExpenses = 0.0
+//    private var totalGroceries = 0.0
+//    private var totalShopping = 0.0
+//    private var totalSubscriptions = 0.0
+//    private var totalEntertainment = 0.0
+//    private var totalRestaurant = 0.0
+//    private var totalTravel = 0.0
+//    private var totalBills = 0.0
+//    private var totalOthers = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +75,7 @@ class DashboardFragment : Fragment() {
             navController.navigate(R.id.action_dashboardFragment_to_allExpensesFragment)
         }
 
+
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
             viewModel.allExpensesState.collect {
@@ -92,14 +93,8 @@ class DashboardFragment : Fragment() {
                         }
                         expensesAdapter.submitList(latestExpenses)
 
-                        //updating total expenses
-                        Log.d("TAGYOYO", "onViewCreated: ${it.expenses}")
-                        it.expenses.forEach { expense ->
-                            totalExpenses += expense.amount
-                        }
-                        binding.tvTotalExpenses.text = "₹$totalExpenses"
+                        binding.tvTotalExpenses.text = "₹${viewModel.totalExpenses}"
 
-                        updateCategoryTotal(it.expenses)
                         setUpPieChart()
                     }
                     is ExpenseState.Loading -> {
@@ -135,14 +130,14 @@ class DashboardFragment : Fragment() {
 
 
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry((totalGroceries * 100/totalExpenses).toFloat(), "Groceries"))
-        entries.add(PieEntry((totalShopping * 100/totalExpenses).toFloat(), "Shopping"))
-        entries.add(PieEntry((totalSubscriptions * 100/totalExpenses).toFloat(), "Subscriptions"))
-        entries.add(PieEntry((totalEntertainment * 100/totalExpenses).toFloat(), "Entertainment"))
-        entries.add(PieEntry((totalRestaurant * 100/totalExpenses).toFloat(), "Restaurant"))
-        entries.add(PieEntry((totalTravel * 100/totalExpenses).toFloat(), "Travel"))
-        entries.add(PieEntry((totalBills * 100/totalExpenses).toFloat(), "Bills"))
-        entries.add(PieEntry((totalOthers * 100/totalExpenses).toFloat(), "Others"))
+        entries.add(PieEntry((viewModel.totalGroceries * 100/viewModel.totalExpenses).toFloat(), "Groceries"))
+        entries.add(PieEntry((viewModel.totalShopping * 100/viewModel.totalExpenses).toFloat(), "Shopping"))
+        entries.add(PieEntry((viewModel.totalSubscriptions * 100/viewModel.totalExpenses).toFloat(), "Subscriptions"))
+        entries.add(PieEntry((viewModel.totalEntertainment * 100/viewModel.totalExpenses).toFloat(), "Entertainment"))
+        entries.add(PieEntry((viewModel.totalRestaurant * 100/viewModel.totalExpenses).toFloat(), "Restaurant"))
+        entries.add(PieEntry((viewModel.totalTravel * 100/viewModel.totalExpenses).toFloat(), "Travel"))
+        entries.add(PieEntry((viewModel.totalBills * 100/viewModel.totalExpenses).toFloat(), "Bills"))
+        entries.add(PieEntry((viewModel.totalOthers * 100/viewModel.totalExpenses).toFloat(), "Others"))
 
         val colors = ArrayList<Int>()
         colors.add(ContextCompat.getColor(requireContext(), R.color.green))
@@ -178,37 +173,6 @@ class DashboardFragment : Fragment() {
 
         binding.pieChart.data = data
         binding.pieChart.invalidate()
-    }
-
-    private fun updateCategoryTotal(expenses: List<Expense>) {
-        expenses.forEach { expense ->
-            when(expense.category) {
-                "groceries" -> {
-                    totalGroceries += expense.amount
-                }
-                "shopping" -> {
-                    totalShopping += expense.amount
-                }
-                "subscription" -> {
-                    totalSubscriptions += expense.amount
-                }
-                "entertainment" -> {
-                    totalEntertainment += expense.amount
-                }
-                "restaurant" -> {
-                    totalRestaurant += expense.amount
-                }
-                "travel" -> {
-                    totalTravel += expense.amount
-                }
-                "bills" -> {
-                    totalBills += expense.amount
-                }
-                "others" -> {
-                    totalOthers += expense.amount
-                }
-            }
-        }
     }
 
     private fun setUpRecyclerView() {
