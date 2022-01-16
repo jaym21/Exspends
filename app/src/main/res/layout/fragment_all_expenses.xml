@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.AllExpensesFragment"
     android:background="@color/bg_color"
     android:paddingStart="16dp"
@@ -18,15 +19,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_back_arrow"
+                app:tint="@color/white"
+                android:layout_marginTop="16dp"/>
+
             <TextView
                 android:id="@+id/tvAllExpensesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All Expenses"
-                android:textSize="22sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/redhat_bold"
-                android:layout_marginTop="16dp"/>
+                android:fontFamily="@font/redhat_semibold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAllExpenses"
@@ -40,5 +50,14 @@
         </RelativeLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

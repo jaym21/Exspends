@@ -13,7 +13,7 @@ class ExpenseRepository @Inject constructor(private val database: AppDatabase) {
 
     suspend fun updateExpense(expense: Expense) = database.getExpenseDAO().updateExpense(expense)
 
-    fun getAllTransaction(): Flow<List<Expense>> = database.getExpenseDAO().getAllExpenses()
+    fun getAllExpenses(): Flow<List<Expense>> = database.getExpenseDAO().getAllExpenses()
 
     fun getExpensesByCategory(category: String): Flow<List<Expense>> = database.getExpenseDAO().getExpensesByCategory(category)
 }

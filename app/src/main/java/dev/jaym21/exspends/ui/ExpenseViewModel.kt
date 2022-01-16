@@ -31,8 +31,8 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
         repo.updateExpense(expense)
     }
 
-    fun getAllTransaction() = viewModelScope.launch(Dispatchers.IO) {
-        repo.getAllTransaction().collect { expenses ->
+    fun getAllExpenses() = viewModelScope.launch(Dispatchers.IO) {
+        repo.getAllExpenses().collect { expenses ->
             if (expenses.isNullOrEmpty()) {
                 _allExpensesState.value = ExpenseState.Empty
             } else {
