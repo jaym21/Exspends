@@ -22,7 +22,6 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
-import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.flow.collect
@@ -36,15 +35,6 @@ class DashboardFragment : Fragment() {
     private lateinit var navController: NavController
     private var expensesAdapter = ExpensesRVAdapter()
     private lateinit var viewModel: ExpenseViewModel
-//    private var totalExpenses = 0.0
-//    private var totalGroceries = 0.0
-//    private var totalShopping = 0.0
-//    private var totalSubscriptions = 0.0
-//    private var totalEntertainment = 0.0
-//    private var totalRestaurant = 0.0
-//    private var totalTravel = 0.0
-//    private var totalBills = 0.0
-//    private var totalOthers = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +47,7 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("TAGYOYO", "onViewCreated")
 
         //initializing navController
         navController = Navigation.findNavController(view)
@@ -75,7 +66,6 @@ class DashboardFragment : Fragment() {
             navController.navigate(R.id.action_dashboardFragment_to_allExpensesFragment)
         }
 
-
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
             viewModel.allExpensesState.collect {
@@ -92,6 +82,7 @@ class DashboardFragment : Fragment() {
                             it.expenses
                         }
                         expensesAdapter.submitList(latestExpenses)
+                        Log.d("TAGYOYO", "onViewCreated: allExpensesState VIEWMODEL ${viewModel.totalExpenses}")
 
                         binding.tvTotalExpenses.text = "₹${viewModel.totalExpenses}"
 

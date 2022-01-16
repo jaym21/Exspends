@@ -1,8 +1,5 @@
 package dev.jaym21.exspends.ui
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,8 +46,21 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
             if (expenses.isNullOrEmpty()) {
                 _allExpensesState.value = ExpenseState.Empty
             } else {
+                //resetting the totals
+                totalExpenses = 0.0
+                totalGroceries = 0.0
+                totalShopping = 0.0
+                totalSubscriptions = 0.0
+                totalEntertainment = 0.0
+                totalRestaurant = 0.0
+                totalTravel = 0.0
+                totalBills = 0.0
+                totalOthers = 0.0
+
+                //updating the total expense and total for categories
                 updateTotalExpenses(expenses)
                 updateCategoryTotal(expenses)
+
                 _allExpensesState.value = ExpenseState.Success(expenses)
             }
         }
