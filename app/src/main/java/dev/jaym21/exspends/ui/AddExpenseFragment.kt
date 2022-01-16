@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentAddExpenseBinding
+import dev.jaym21.exspends.utils.DateConverterUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,7 +56,7 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
 
         binding.btnAddExpense.setOnClickListener {
             if (checkAllFieldsEntered()) {
-                val newExpense = Expense(binding.etExpenseTitle.text.toString(), binding.etExpenseAmount.text.toString().toDouble(), categorySelected!!, binding.etExpenseDate.text.toString())
+                val newExpense = Expense(binding.etExpenseTitle.text.toString(), binding.etExpenseAmount.text.toString().toDouble(), categorySelected!!, binding.etExpenseDate.text.toString(),  DateConverterUtils.getTimestamp(binding.etExpenseDate.text.toString()))
                 expenseViewModel.addExpense(newExpense)
                 navController.popBackStack()
             }
