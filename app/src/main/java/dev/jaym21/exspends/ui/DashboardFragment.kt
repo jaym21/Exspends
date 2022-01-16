@@ -17,7 +17,6 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
@@ -26,7 +25,6 @@ import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.flow.collect
-import kotlin.math.round
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
@@ -68,9 +66,13 @@ class DashboardFragment : Fragment() {
             navController.navigate(R.id.action_dashboardFragment_to_addExpenseFragment)
         }
 
-        viewModel.getAllTransaction()
+        viewModel.getAllExpenses()
 
         setUpRecyclerView()
+
+        binding.llAllExpenses.setOnClickListener {
+            navController.navigate(R.id.action_dashboardFragment_to_allExpensesFragment)
+        }
 
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
