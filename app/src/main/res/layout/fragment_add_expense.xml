@@ -125,9 +125,11 @@
             android:textColor="@color/text_color_light"
             android:fontFamily="@font/redhat_regular" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/llCategories1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -151,7 +153,6 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_shopping_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvGroceries"
                 android:layout_marginStart="10dp"/>
 
             <TextView
@@ -164,8 +165,17 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_subscription_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvShopping"
                 android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCategories2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/llCategories1"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/tvEntertainment"
@@ -176,9 +186,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_entertainment_notselected_bg"
-                android:padding="10dp"
-                android:layout_below="@id/tvGroceries"
-                android:layout_marginTop="10dp"/>
+                android:padding="10dp"/>
 
             <TextView
                 android:id="@+id/tvRestaurant"
@@ -190,8 +198,6 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_restaurant_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvEntertainment"
-                android:layout_alignBottom="@id/tvEntertainment"
                 android:layout_marginStart="10dp"/>
 
             <TextView
@@ -204,9 +210,17 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_travel_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvRestaurant"
-                android:layout_alignBottom="@id/tvRestaurant"
                 android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCategories3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/llCategories2"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/tvBills"
@@ -217,9 +231,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_personal_notselected_bg"
-                android:padding="10dp"
-                android:layout_below="@id/tvEntertainment"
-                android:layout_marginTop="10dp"/>
+                android:padding="10dp"/>
 
             <TextView
                 android:id="@+id/tvOthers"
@@ -231,11 +243,9 @@
                 android:fontFamily="@font/redhat_regular"
                 android:background="@drawable/category_others_notselected_bg"
                 android:padding="10dp"
-                android:layout_toEndOf="@id/tvBills"
-                android:layout_alignBottom="@id/tvBills"
                 android:layout_marginStart="10dp"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

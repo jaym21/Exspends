@@ -81,7 +81,7 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.travel_icon_bg)
             }
             "bills" -> {
-                Glide.with(holder.itemView.context).load(R.drawable.ic_personal).into(holder.categoryIcon)
+                Glide.with(holder.itemView.context).load(R.drawable.ic_bill).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.turquoise))
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.bills_icon_bg)
             }
