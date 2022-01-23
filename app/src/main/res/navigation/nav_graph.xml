@@ -26,7 +26,11 @@
             app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_dashboardFragment_to_expenseOpenFragment"
-            app:destination="@id/expenseOpenFragment" />
+            app:destination="@id/expenseOpenFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -41,7 +45,11 @@
         tools:layout="@layout/fragment_all_expenses" >
         <action
             android:id="@+id/action_allExpensesFragment_to_expenseOpenFragment"
-            app:destination="@id/expenseOpenFragment" />
+            app:destination="@id/expenseOpenFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/expenseOpenFragment"
