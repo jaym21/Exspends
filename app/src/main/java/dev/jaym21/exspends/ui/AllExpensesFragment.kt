@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -69,6 +70,16 @@ class AllExpensesFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        animateUnderline()
+    }
+
+    private fun animateUnderline() {
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.underline_animation)
+        binding.underline.startAnimation(animation)
     }
 
     private fun setUpRecyclerView() {

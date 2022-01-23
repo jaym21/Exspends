@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -209,6 +210,16 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
                 binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_selected_bg)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        animateUnderline()
+    }
+
+    private fun animateUnderline() {
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.underline_animation)
+        binding.underline.startAnimation(animation)
     }
 
     override fun onDestroy() {
