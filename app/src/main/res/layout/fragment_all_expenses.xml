@@ -25,18 +25,34 @@
                 android:layout_height="35dp"
                 android:src="@drawable/ic_back_arrow"
                 app:tint="@color/white"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="16dp" />
 
-            <TextView
-                android:id="@+id/tvAllExpensesText"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/llAllExpensesText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="All Expenses"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/redhat_semibold"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="22dp" />
+                android:orientation="vertical"
+                android:layout_below="@id/ivBack"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all_expenses"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/redhat_semibold"
+                    android:layout_marginTop="6dp" />
+
+                <View
+                    android:id="@+id/underline"
+                    android:layout_width="55dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/underline_bg"
+                    android:layout_marginTop="3dp"/>
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAllExpenses"
@@ -44,8 +60,10 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:overScrollMode="never"
-                android:layout_below="@id/tvAllExpensesText"
-                android:layout_marginTop="16dp" />
+                android:layout_below="@id/llAllExpensesText"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
 
         </RelativeLayout>
 

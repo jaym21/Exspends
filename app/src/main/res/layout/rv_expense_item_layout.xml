@@ -26,7 +26,6 @@
 
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/tvExpenseTitle"
         android:layout_width="wrap_content"

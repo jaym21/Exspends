@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Exspends</string>
+    <string name="all_expenses">All Expenses</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="title">Title</string>
+    <string name="amount">Amount</string>
+    <string name="select_category">Select Category</string>
+    <string name="groceries">Groceries</string>
+    <string name="shopping">Shopping</string>
+    <string name="subscriptions">Subscriptions</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="travel">Travel</string>
+    <string name="bills">Bills</string>
+    <string name="others">Others</string>
+    <string name="date">Date</string>
+    <string name="add_expense">Add Expense</string>
 </resources>
