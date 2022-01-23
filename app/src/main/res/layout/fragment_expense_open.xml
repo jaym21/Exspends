@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.ExpenseOpenFragment"
+    android:background="@color/bg_color"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back_arrow"
+        app:tint="@color/white"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:id="@+id/llCategoryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/ivBack"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Groceries"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_semibold"
+                android:layout_marginTop="6dp" />
+
+            <View
+                android:id="@+id/underline"
+                android:layout_width="55dp"
+                android:layout_height="8dp"
+                tools:background="@drawable/groceries_underline_bg"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            tools:src="@drawable/ic_groceries"
+            tools:tint="@color/green"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpenseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llCategoryText"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <TextView
+            android:id="@+id/tvExpenseTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Vegetables"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_regular"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpenseAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llExpenseTitle"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <TextView
+            android:id="@+id/tvExpenseAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="₹200"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_regular"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llExpenseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/llExpenseAmount"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spent on"
+            android:textSize="14sp"
+            android:textColor="@color/text_color_light"
+            android:fontFamily="@font/redhat_regular" />
+
+        <TextView
+            android:id="@+id/tvExpenseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="23 Jan,2022"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_regular"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

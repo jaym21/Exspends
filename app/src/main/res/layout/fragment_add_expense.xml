@@ -6,14 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.AddExpenseFragment"
     android:background="@color/bg_color"
-    android:padding="16dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/ic_back_arrow"
-        app:tint="@color/white"/>
+        app:tint="@color/white"
+        android:layout_marginTop="16dp"/>
 
     <LinearLayout
         android:id="@+id/llAddExpenseText"
@@ -298,6 +300,7 @@
         app:cornerRadius="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="16dp"/>
 
 </RelativeLayout>
