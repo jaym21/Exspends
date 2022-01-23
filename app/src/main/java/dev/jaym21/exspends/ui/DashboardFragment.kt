@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -22,18 +23,19 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
+import dev.jaym21.exspends.adapters.IExpensesRVAdapter
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
-import dev.jaym21.exspends.stateflows.ExpenseState
+import dev.jaym21.exspends.stateflows.AllExpensesState
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding: FragmentDashboardBinding
         get() = _binding!!
     private lateinit var navController: NavController
-    private var expensesAdapter = ExpensesRVAdapter()
+    private var expensesAdapter = ExpensesRVAdapter(this)
     private lateinit var viewModel: ExpenseViewModel
 
     override fun onCreateView(
@@ -68,9 +70,9 @@ class DashboardFragment : Fragment() {
 
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
-            viewModel.allExpensesState.collect {
+            viewModel.allExpenses.collect {
                 when(it) {
-                    is ExpenseState.Success -> {
+                    is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.pieChart.visibility = View.VISIBLE
                         binding.tvLatestExpensesText.visibility = View.VISIBLE
@@ -88,10 +90,10 @@ class DashboardFragment : Fragment() {
 
                         setUpPieChart()
                     }
-                    is ExpenseState.Loading -> {
+                    is AllExpensesState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
-                    is ExpenseState.Empty -> {
+                    is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
                         binding.pieChart.visibility = View.GONE
                         binding.tvLatestExpensesText.visibility = View.GONE
@@ -185,5 +187,10 @@ class DashboardFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onExpenseClick(id: Int) {
+        val bundle = bundleOf("id" to id)
+        navController.navigate(R.id.action_dashboardFragment_to_expenseOpenFragment, bundle)
     }
 }

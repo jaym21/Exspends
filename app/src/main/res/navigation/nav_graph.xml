@@ -47,6 +47,12 @@
         android:id="@+id/expenseOpenFragment"
         android:name="dev.jaym21.exspends.ui.ExpenseOpenFragment"
         android:label="fragment_expense_open"
-        tools:layout="@layout/fragment_expense_open" />
+        tools:layout="@layout/fragment_expense_open" >
+
+        <argument
+            android:name="id"
+            app:argType="integer"/>
+
+    </fragment>
 
 </navigation>

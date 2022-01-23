@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -14,18 +15,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
+import dev.jaym21.exspends.adapters.IExpensesRVAdapter
 import dev.jaym21.exspends.databinding.FragmentAllExpensesBinding
-import dev.jaym21.exspends.stateflows.ExpenseState
+import dev.jaym21.exspends.stateflows.AllExpensesState
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class AllExpensesFragment : Fragment() {
+class AllExpensesFragment : Fragment(), IExpensesRVAdapter {
 
     private var _binding: FragmentAllExpensesBinding? = null
     private val binding: FragmentAllExpensesBinding
         get() = _binding!!
     private lateinit var navController: NavController
-    private var expensesAdapter = ExpensesRVAdapter()
+    private var expensesAdapter = ExpensesRVAdapter(this)
     private lateinit var viewModel: ExpenseViewModel
 
     override fun onCreateView(
@@ -55,16 +57,16 @@ class AllExpensesFragment : Fragment() {
 
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
-            viewModel.allExpensesState.collect {
+            viewModel.allExpenses.collect {
                 when(it) {
-                    is ExpenseState.Success -> {
+                    is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
                         expensesAdapter.submitList(it.expenses)
                     }
-                    is ExpenseState.Loading -> {
+                    is AllExpensesState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
-                    is ExpenseState.Empty -> {
+                    is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
                     }
                 }
@@ -92,5 +94,10 @@ class AllExpensesFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onExpenseClick(id: Int) {
+        val bundle = bundleOf("id" to id)
+        navController.navigate(R.id.action_allExpensesFragment_to_expenseOpenFragment, bundle)
     }
 }

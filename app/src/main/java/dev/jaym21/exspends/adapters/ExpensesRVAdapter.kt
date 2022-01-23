@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -15,7 +16,7 @@ import dev.jaym21.exspends.R
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.utils.DateConverterUtils
 
-class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolder>(ExpensesDiffUtil()) {
+class ExpensesRVAdapter(private val listener: IExpensesRVAdapter): ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolder>(ExpensesDiffUtil()) {
 
     class ExpensesDiffUtil: DiffUtil.ItemCallback<Expense>() {
         override fun areItemsTheSame(oldItem: Expense, newItem: Expense): Boolean {
@@ -28,6 +29,7 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
     }
 
     inner class ExpenseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val root: RelativeLayout = itemView.findViewById(R.id.rlExpenseRoot)
         val categoryCard: LinearLayout = itemView.findViewById(R.id.llCategoryIcon)
         val categoryIcon: ImageView = itemView.findViewById(R.id.ivCategoryIcon)
         val title: TextView = itemView.findViewById(R.id.tvExpenseTitle)
@@ -48,6 +50,10 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
         holder.category.text = "${currentItem.category[0].uppercase()}${currentItem.category.substring(1)}"
         val dateTimestamp = DateConverterUtils.getTimestamp(currentItem.date)
         holder.date.text = DateConverterUtils.convertDateFormat(dateTimestamp)
+
+        holder.root.setOnClickListener {
+            listener.onExpenseClick(currentItem.id)
+        }
 
         when(currentItem.category) {
             "groceries" -> {
@@ -71,7 +77,7 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.entertainment_icon_bg)
             }
             "restaurant" -> {
-                Glide.with(holder.itemView.context).load(R.drawable.ic_eatingout).into(holder.categoryIcon)
+                Glide.with(holder.itemView.context).load(R.drawable.ic_restaurant).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.purple))
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.restaurant_icon_bg)
             }
@@ -92,4 +98,8 @@ class ExpensesRVAdapter: ListAdapter<Expense, ExpensesRVAdapter.ExpenseViewHolde
             }
         }
     }
+}
+
+interface IExpensesRVAdapter {
+    fun onExpenseClick(id: Int)
 }

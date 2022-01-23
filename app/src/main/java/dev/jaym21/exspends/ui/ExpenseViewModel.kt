@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jaym21.exspends.data.repository.ExpenseRepository
 import dev.jaym21.exspends.data.models.Expense
+import dev.jaym21.exspends.stateflows.AllExpensesState
 import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,8 +17,10 @@ import javax.inject.Inject
 @HiltViewModel
 class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository): ViewModel() {
 
-    private val _allExpensesState = MutableStateFlow<ExpenseState>(ExpenseState.Loading)
-    val allExpensesState: StateFlow<ExpenseState> = _allExpensesState
+    private val _allExpenses = MutableStateFlow<AllExpensesState>(AllExpensesState.Loading)
+    val allExpenses: StateFlow<AllExpensesState> = _allExpenses
+    private val _expenseById = MutableStateFlow<ExpenseState>(ExpenseState.Loading)
+    val expenseById: StateFlow<ExpenseState> = _expenseById
 
     var totalExpenses = 0.0
     var totalGroceries = 0.0
@@ -44,7 +47,7 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
     fun getAllExpenses() = viewModelScope.launch(Dispatchers.IO) {
         repo.getAllExpenses().collect { expenses ->
             if (expenses.isNullOrEmpty()) {
-                _allExpensesState.value = ExpenseState.Empty
+                _allExpenses.value = AllExpensesState.Empty
             } else {
                 //resetting the totals
                 totalExpenses = 0.0
@@ -61,8 +64,14 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
                 updateTotalExpenses(expenses)
                 updateCategoryTotal(expenses)
 
-                _allExpensesState.value = ExpenseState.Success(expenses)
+                _allExpenses.value = AllExpensesState.Success(expenses)
             }
+        }
+    }
+
+    fun getExpenseWithId(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+        repo.getExpenseById(id).collect { expense ->
+            _expenseById.value = ExpenseState.Success(expense)
         }
     }
 

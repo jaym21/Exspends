@@ -19,6 +19,9 @@ interface ExpenseDAO {
     @Query("SELECT * FROM expenses_table ORDER by dateTimestamp DESC")
     fun getAllExpenses(): Flow<List<Expense>>
 
-    @Query("SELECT * FROM EXPENSES_TABLE WHERE category = :category ORDER by dateTimestamp DESC")
+    @Query("SELECT * FROM expenses_table WHERE category = :category ORDER by dateTimestamp DESC")
     fun getExpensesByCategory(category: String): Flow<List<Expense>>
+
+    @Query("SELECT * FROM expenses_table WHERE id = :id")
+    fun getExpenseById(id:Int): Flow<Expense>
 }
