@@ -25,6 +25,7 @@
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/category_subscription_selected_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/category_travel_notselected_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/category_travel_selected_bg.xml" value="0.3828125" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/delete_dialog_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/edittext_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/entertainment_icon_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/entertainment_underline_bg.xml" value="0.3828125" />
@@ -45,6 +46,7 @@
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/travel_underline_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/underline_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/delete_dialog_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_add_expense.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_all_expenses.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_dashboard.xml" value="0.35260416666666666" />

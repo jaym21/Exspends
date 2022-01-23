@@ -2,6 +2,7 @@ package dev.jaym21.exspends.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "expenses_table")
 data class Expense(
@@ -12,4 +13,4 @@ data class Expense(
     val dateTimestamp: Long,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-)
+): Serializable

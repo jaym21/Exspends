@@ -24,6 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
 import dev.jaym21.exspends.adapters.IExpensesRVAdapter
+import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.AllExpensesState
 import kotlinx.coroutines.flow.collect
@@ -49,7 +50,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TAGYOYO", "onViewCreated")
 
         //initializing navController
         navController = Navigation.findNavController(view)
@@ -60,21 +60,31 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
             navController.navigate(R.id.action_dashboardFragment_to_addExpenseFragment)
         }
 
-        viewModel.getAllExpenses()
+        Log.d("TAGYOYO", "onViewCreated: CALLED")
 
         setUpRecyclerView()
+
+        viewModel.getAllExpenses()
+
 
         binding.llAllExpenses.setOnClickListener {
             navController.navigate(R.id.action_dashboardFragment_to_allExpensesFragment)
         }
+
+        observeLatestExpenses()
+    }
+
+    private fun observeLatestExpenses() {
 
         //observing the all expenses from the database
         lifecycleScope.launchWhenCreated {
             viewModel.allExpenses.collect {
                 when(it) {
                     is AllExpensesState.Success -> {
+                        Log.d("TAGYOYO", "observeLatestExpenses: ${it.expenses}")
                         binding.progressBar.visibility = View.GONE
                         binding.pieChart.visibility = View.VISIBLE
+                        binding.rvLatestExpenses.visibility = View.VISIBLE
                         binding.tvLatestExpensesText.visibility = View.VISIBLE
                         binding.llAllExpenses.visibility = View.VISIBLE
                         //updating latest expenses
@@ -84,7 +94,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                             it.expenses
                         }
                         expensesAdapter.submitList(latestExpenses)
-                        Log.d("TAGYOYO", "onViewCreated: allExpensesState VIEWMODEL ${viewModel.totalExpenses}")
 
                         binding.tvTotalExpenses.text = "₹${viewModel.totalExpenses}"
 
@@ -98,6 +107,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                         binding.pieChart.visibility = View.GONE
                         binding.tvLatestExpensesText.visibility = View.GONE
                         binding.llAllExpenses.visibility = View.GONE
+                        binding.rvLatestExpenses.visibility = View.GONE
                         binding.tvTotalExpenses.text = "₹0"
                     }
                 }
@@ -189,8 +199,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         _binding = null
     }
 
-    override fun onExpenseClick(id: Int) {
-        val bundle = bundleOf("id" to id)
+    override fun onExpenseClick(expense: Expense) {
+        val bundle = bundleOf("expense" to expense)
         navController.navigate(R.id.action_dashboardFragment_to_expenseOpenFragment, bundle)
     }
 }

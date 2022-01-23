@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
 import dev.jaym21.exspends.adapters.IExpensesRVAdapter
+import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentAllExpensesBinding
 import dev.jaym21.exspends.stateflows.AllExpensesState
 import kotlinx.coroutines.flow.collect
@@ -61,6 +62,8 @@ class AllExpensesFragment : Fragment(), IExpensesRVAdapter {
                 when(it) {
                     is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.tvNoExpenses.visibility = View.GONE
+                        binding.rvAllExpenses.visibility = View.VISIBLE
                         expensesAdapter.submitList(it.expenses)
                     }
                     is AllExpensesState.Loading -> {
@@ -68,6 +71,8 @@ class AllExpensesFragment : Fragment(), IExpensesRVAdapter {
                     }
                     is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.rvAllExpenses.visibility = View.GONE
+                        binding.tvNoExpenses.visibility = View.VISIBLE
                     }
                 }
             }
@@ -96,8 +101,8 @@ class AllExpensesFragment : Fragment(), IExpensesRVAdapter {
         _binding = null
     }
 
-    override fun onExpenseClick(id: Int) {
-        val bundle = bundleOf("id" to id)
+    override fun onExpenseClick(expense: Expense) {
+        val bundle = bundleOf("expense" to expense)
         navController.navigate(R.id.action_allExpensesFragment_to_expenseOpenFragment, bundle)
     }
 }

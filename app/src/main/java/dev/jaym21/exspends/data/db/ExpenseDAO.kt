@@ -23,5 +23,5 @@ interface ExpenseDAO {
     fun getExpensesByCategory(category: String): Flow<List<Expense>>
 
     @Query("SELECT * FROM expenses_table WHERE id = :id")
-    fun getExpenseById(id:Int): Flow<Expense>
+    fun getExpenseById(id:Int): Flow<Expense?>
 }

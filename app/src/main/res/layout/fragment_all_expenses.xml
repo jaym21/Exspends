@@ -66,6 +66,17 @@
 
     </ScrollView>
 
+    <TextView
+        android:id="@+id/tvNoExpenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_expenses_present"
+        android:textColor="@color/white_alpha_70"
+        android:fontFamily="@font/redhat_semibold"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

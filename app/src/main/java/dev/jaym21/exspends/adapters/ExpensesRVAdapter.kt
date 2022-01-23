@@ -52,7 +52,7 @@ class ExpensesRVAdapter(private val listener: IExpensesRVAdapter): ListAdapter<E
         holder.date.text = DateConverterUtils.convertDateFormat(dateTimestamp)
 
         holder.root.setOnClickListener {
-            listener.onExpenseClick(currentItem.id)
+            listener.onExpenseClick(currentItem)
         }
 
         when(currentItem.category) {
@@ -101,5 +101,5 @@ class ExpensesRVAdapter(private val listener: IExpensesRVAdapter): ListAdapter<E
 }
 
 interface IExpensesRVAdapter {
-    fun onExpenseClick(id: Int)
+    fun onExpenseClick(expense: Expense)
 }

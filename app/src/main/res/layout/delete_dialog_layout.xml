@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvDeleteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/do_you_want_to_delete_this_expense"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_regular"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/cancel"
+        android:textSize="13sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/redhat_semibold"
+        app:cornerRadius="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/tvDeleteText"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/delete"
+        android:textSize="13sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/redhat_semibold"
+        app:cornerRadius="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/tvDeleteText"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>

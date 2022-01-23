@@ -1,5 +1,6 @@
 package dev.jaym21.exspends.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,17 +9,16 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
+import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentExpenseOpenBinding
-import dev.jaym21.exspends.stateflows.AllExpensesState
-import dev.jaym21.exspends.stateflows.ExpenseState
 import dev.jaym21.exspends.utils.DateConverterUtils
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ExpenseOpenFragment : Fragment() {
@@ -28,7 +28,7 @@ class ExpenseOpenFragment : Fragment() {
         get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var viewModel: ExpenseViewModel
-    private var expenseId: Int? = null
+    private var expense: Expense? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,37 +49,53 @@ class ExpenseOpenFragment : Fragment() {
             navController.popBackStack()
         }
 
-        expenseId = arguments?.getInt("id")
+        expense = arguments?.getSerializable("expense") as Expense
 
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 
-        if (expenseId != null)
-            viewModel.getExpenseWithId(expenseId!!)
-        else
-            navController.popBackStack()
+        if (expense != null) {
 
-        lifecycleScope.launchWhenCreated {
-            viewModel.expenseById.collect {
-                when (it) {
-                    is ExpenseState.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.tvCategoryName.text = "${it.expense.category[0].uppercase()}${it.expense.category.substring(1)}"
-                        updateCategoryUnderlineAndIcon(it.expense.category)
-                        binding.tvExpenseTitle.text = it.expense.title
-                        binding.tvExpenseAmount.text = "₹${it.expense.amount}"
-                        val dateTimestamp = DateConverterUtils.getTimestamp(it.expense.date)
-                        binding.tvExpenseDate.text = DateConverterUtils.convertDateFormat(dateTimestamp)
-                    }
-                    is ExpenseState.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is ExpenseState.Empty -> {
-                        binding.progressBar.visibility = View.GONE
-                        navController.popBackStack()
-                    }
-                }
+            binding.ivDeleteExpense.setOnClickListener {
+                showDeleteDialog()
+            }
+
+            updateCategoryUnderlineAndIcon(expense!!.category)
+
+            binding.tvCategoryName.text = "${expense!!.category[0].uppercase()}${expense!!.category.substring(1)}"
+            binding.tvExpenseTitle.text = expense!!.title
+            binding.tvExpenseAmount.text = "₹${expense!!.amount}"
+            val dateTimestamp = DateConverterUtils.getTimestamp(expense!!.date)
+            binding.tvExpenseDate.text = DateConverterUtils.convertDateFormat(dateTimestamp)
+
+        } else {
+            navController.popBackStack()
+        }
+    }
+
+    private fun showDeleteDialog() {
+        val builder = AlertDialog.Builder(requireContext(), R.style.DeleteAlertDialog).create()
+
+        val view = layoutInflater.inflate(R.layout.delete_dialog_layout, null)
+        val deleteButton: MaterialButton = view.findViewById(R.id.btnDelete)
+        val cancelButton: MaterialButton = view.findViewById(R.id.btnCancel)
+
+        builder.setView(view)
+        builder.setCanceledOnTouchOutside(false)
+
+        deleteButton.setOnClickListener {
+            if (expense != null) {
+                viewModel.removeExpense(expense!!)
+                builder.dismiss()
+                navController.popBackStack()
+            } else {
+                Snackbar.make(binding.root, "Could not delete expense, try again!", Snackbar.LENGTH_SHORT).show()
+                builder.dismiss()
             }
         }
+        cancelButton.setOnClickListener {
+            builder.dismiss()
+        }
+        builder.show()
     }
 
     private fun updateCategoryUnderlineAndIcon(category:  String) {
