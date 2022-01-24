@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jaym21.exspends.data.repository.ExpenseRepository
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.stateflows.AllExpensesState
-import dev.jaym21.exspends.stateflows.ExpenseState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,8 +18,6 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
 
     private val _allExpenses = MutableStateFlow<AllExpensesState>(AllExpensesState.Loading)
     val allExpenses: StateFlow<AllExpensesState> = _allExpenses
-    private val _expenseById = MutableStateFlow<ExpenseState>(ExpenseState.Loading)
-    val expenseById: StateFlow<ExpenseState> = _expenseById
 
     var totalExpenses = 0.0
     var totalGroceries = 0.0

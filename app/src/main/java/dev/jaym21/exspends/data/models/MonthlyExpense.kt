@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class MonthlyExpense(
     val month: String,
     val year: String,
-    val totalAmount: String,
+    val totalAmount: Double,
     val dateTimestamp: Long,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

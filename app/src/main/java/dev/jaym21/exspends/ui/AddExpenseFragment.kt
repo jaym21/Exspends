@@ -102,23 +102,13 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
             datePickerOnDateSetListener,
             calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
         ).run {
-            datePicker.minDate = getFirstDayOfMonthTimestamp()
+            datePicker.minDate = DateConverterUtils.getFirstDayOfMonthTimestamp()
             datePicker.maxDate = dateToday.time
             show()
         }
     }
 
-    private fun getFirstDayOfMonthTimestamp(): Long {
-        val cal = Calendar.getInstance()
-        cal.set(Calendar.HOUR_OF_DAY, 0)
-        cal.clear(Calendar.MINUTE)
-        cal.clear(Calendar.SECOND)
-        cal.clear(Calendar.MILLISECOND)
 
-        cal.set(Calendar.DAY_OF_MONTH, 1)
-
-        return cal.timeInMillis
-    }
 
     //adding category onClick listeners
     private fun initializeOnClick() {

@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -24,11 +27,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
 import dev.jaym21.exspends.adapters.IExpensesRVAdapter
+import dev.jaym21.exspends.data.datastore.DataStoreManager
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.AllExpensesState
 import dev.jaym21.exspends.utils.DateConverterUtils
+import dev.jaym21.exspends.workmanager.MonthlyWorker
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment(), IExpensesRVAdapter {
@@ -54,6 +61,21 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
         //TODO: Implement monthly total expenses storing in database with new entity
         //TODO: Add barchart to compare total expenses of previous months
+
+        DataStoreManager(requireContext()).isFirstStartUp.asLiveData().observe(viewLifecycleOwner) { isFirstStartUp ->
+            Log.d("TAGYOYO", "INSIDE: $isFirstStartUp")
+            if (isFirstStartUp) {
+                val delay = DateConverterUtils.getFirstDayOfNextMonthTimestamp() - System.currentTimeMillis()
+                val delayTest = 1643049300000 - System.currentTimeMillis()
+                if (delay > 0) {
+                    val monthWork = OneTimeWorkRequest.Builder(MonthlyWorker::class.java)
+                        .setInitialDelay(delayTest, TimeUnit.MILLISECONDS)
+                        .build()
+
+                    WorkManager.getInstance(requireContext()).enqueue(monthWork)
+                }
+            }
+        }
 
         //initializing navController
         navController = Navigation.findNavController(view)

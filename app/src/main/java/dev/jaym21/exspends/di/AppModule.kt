@@ -7,6 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.jaym21.exspends.data.db.AppDatabase
+import dev.jaym21.exspends.data.repository.ExpenseRepository
+import dev.jaym21.exspends.data.repository.MonthlyExpenseRepository
 import javax.inject.Singleton
 
 @Module
@@ -19,4 +21,15 @@ object AppModule {
         Room.databaseBuilder(application, AppDatabase::class.java, "app_database")
             .build()
 
+    @Provides
+    @Singleton
+    fun provideExpenseRepository(appDatabase: AppDatabase): ExpenseRepository {
+        return ExpenseRepository(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMonthlyExpenseRepository(appDatabase: AppDatabase): MonthlyExpenseRepository {
+        return MonthlyExpenseRepository(appDatabase)
+    }
 }
