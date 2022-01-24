@@ -69,16 +69,6 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
         }
     }
 
-    fun getExpenseWithId(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-        repo.getExpenseById(id).collect { expense ->
-            if (expense != null) {
-                _expenseById.value = ExpenseState.Success(expense)
-            } else {
-                _expenseById.value = ExpenseState.Empty
-            }
-        }
-    }
-
     private fun updateTotalExpenses(expenses: List<Expense>) {
         expenses.forEach {
             totalExpenses += it.amount

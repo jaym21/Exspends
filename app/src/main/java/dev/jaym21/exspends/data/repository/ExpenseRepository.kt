@@ -16,6 +16,4 @@ class ExpenseRepository @Inject constructor(private val database: AppDatabase) {
     fun getAllExpenses(): Flow<List<Expense>> = database.getExpenseDAO().getAllExpenses()
 
     fun getExpensesByCategory(category: String): Flow<List<Expense>> = database.getExpenseDAO().getExpensesByCategory(category)
-
-    fun getExpenseById(id: Int): Flow<Expense?> = database.getExpenseDAO().getExpenseById(id)
 }
