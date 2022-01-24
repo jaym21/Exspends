@@ -75,7 +75,7 @@
                         android:id="@+id/tvCurrentMonth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="January' 22"
+                        tools:text="January' 22"
                         android:textSize="14sp"
                         android:textColor="@color/white_alpha_80"
                         android:fontFamily="@font/redhat_semibold"
