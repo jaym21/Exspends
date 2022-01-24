@@ -17,4 +17,16 @@ class DateConverterUtilsTest {
         val formattedDate = DateConverterUtils.convertDateFormat(1642876200000)
         assertNotNull(formattedDate)
     }
+
+    @Test
+    fun getCurrentMonthFullNameTest() {
+        val month = DateConverterUtils.getCurrentMonthFullName()
+        assertNotNull(month)
+    }
+
+    @Test
+    fun getCurrentYearShortTest() {
+        val year = DateConverterUtils.getCurrentYearShort()
+        assertNotNull(year)
+    }
 }

@@ -17,5 +17,15 @@ class DateConverterUtils {
             val sdf = SimpleDateFormat("MMM dd,yyyy", Locale.ENGLISH)
             return sdf.format(timestamp)
         }
+
+        fun getCurrentMonthFullName(): String {
+            val sdf = SimpleDateFormat("MMMM", Locale.ENGLISH)
+            return sdf.format(System.currentTimeMillis())
+        }
+
+        fun getCurrentYearShort(): String {
+            val sdf = SimpleDateFormat("yy", Locale.ENGLISH)
+            return sdf.format(System.currentTimeMillis())
+        }
     }
 }

@@ -27,6 +27,7 @@ import dev.jaym21.exspends.adapters.IExpensesRVAdapter
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.databinding.FragmentDashboardBinding
 import dev.jaym21.exspends.stateflows.AllExpensesState
+import dev.jaym21.exspends.utils.DateConverterUtils
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -51,6 +52,9 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //TODO: Implement monthly total expenses storing in database with new entity
+        //TODO: Add barchart to compare total expenses of previous months
+
         //initializing navController
         navController = Navigation.findNavController(view)
 
@@ -60,11 +64,12 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
             navController.navigate(R.id.action_dashboardFragment_to_addExpenseFragment)
         }
 
-        Log.d("TAGYOYO", "onViewCreated: CALLED")
-
         setUpRecyclerView()
 
         viewModel.getAllExpenses()
+
+        //setting current month
+        binding.tvCurrentMonth.text = "${DateConverterUtils.getCurrentMonthFullName()}' ${DateConverterUtils.getCurrentYearShort()}"
 
 
         binding.llAllExpenses.setOnClickListener {
@@ -81,7 +86,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
             viewModel.allExpenses.collect {
                 when(it) {
                     is AllExpensesState.Success -> {
-                        Log.d("TAGYOYO", "observeLatestExpenses: ${it.expenses}")
                         binding.progressBar.visibility = View.GONE
                         binding.pieChart.visibility = View.VISIBLE
                         binding.rvLatestExpenses.visibility = View.VISIBLE
