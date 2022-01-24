@@ -23,6 +23,11 @@ class DateConverterUtils {
             return sdf.format(System.currentTimeMillis())
         }
 
+        fun getCurrentYear(): String {
+            val sdf = SimpleDateFormat("yyyy", Locale.ENGLISH)
+            return sdf.format(System.currentTimeMillis())
+        }
+
         fun getCurrentYearShort(): String {
             val sdf = SimpleDateFormat("yy", Locale.ENGLISH)
             return sdf.format(System.currentTimeMillis())

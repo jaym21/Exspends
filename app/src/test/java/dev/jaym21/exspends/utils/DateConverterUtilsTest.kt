@@ -25,6 +25,12 @@ class DateConverterUtilsTest {
     }
 
     @Test
+    fun getCurrentYear() {
+        val year = DateConverterUtils.getCurrentYear()
+        assertNotNull(year)
+    }
+
+    @Test
     fun getCurrentYearShortTest() {
         val year = DateConverterUtils.getCurrentYearShort()
         assertNotNull(year)
