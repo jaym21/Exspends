@@ -35,4 +35,16 @@ class DateConverterUtilsTest {
         val year = DateConverterUtils.getCurrentYearShort()
         assertNotNull(year)
     }
+
+    @Test
+    fun getFirstDayOfMonthTimestampTest() {
+        val firstDay = DateConverterUtils.getFirstDayOfMonthTimestamp()
+        assertNotNull(firstDay)
+    }
+
+    @Test
+    fun getFirstDayOfNextMonthTimestampTest() {
+        val firstDay = DateConverterUtils.getFirstDayOfNextMonthTimestamp()
+        assertNotNull(firstDay)
+    }
 }
