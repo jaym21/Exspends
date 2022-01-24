@@ -21,4 +21,7 @@ interface ExpenseDAO {
 
     @Query("SELECT * FROM expenses_table WHERE category = :category ORDER by dateTimestamp DESC")
     fun getExpensesByCategory(category: String): Flow<List<Expense>>
+
+    @Query("DELETE FROM expenses_table")
+    fun clearAllExpenses()
 }
