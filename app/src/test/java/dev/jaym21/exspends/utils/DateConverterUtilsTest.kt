@@ -19,8 +19,8 @@ class DateConverterUtilsTest {
     }
 
     @Test
-    fun getCurrentMonthFullNameTest() {
-        val month = DateConverterUtils.getCurrentMonthFullName()
+    fun getMonthFullNameTest() {
+        val month = DateConverterUtils.getMonthFullName(System.currentTimeMillis())
         assertNotNull(month)
     }
 
@@ -44,7 +44,13 @@ class DateConverterUtilsTest {
 
     @Test
     fun getFirstDayOfNextMonthTimestampTest() {
-        val firstDay = DateConverterUtils.getFirstDayOfNextMonthTimestamp()
-        assertNotNull(firstDay)
+        val firstDayNextMonth = DateConverterUtils.getFirstDayOfNextMonthTimestamp()
+        assertNotNull(firstDayNextMonth)
+    }
+
+    @Test
+    fun getFirstDayOfPreviousMonthTimestampTest() {
+        val firstDayPreviousMonth = DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()
+        assertNotNull(firstDayPreviousMonth)
     }
 }
