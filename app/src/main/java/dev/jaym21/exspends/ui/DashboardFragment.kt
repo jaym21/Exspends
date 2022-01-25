@@ -35,6 +35,7 @@ import dev.jaym21.exspends.utils.DateConverterUtils
 import dev.jaym21.exspends.workmanager.MonthlyWorker
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -62,19 +63,30 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         //TODO: Implement monthly total expenses storing in database with new entity
         //TODO: Add barchart to compare total expenses of previous months
 
-        DataStoreManager(requireContext()).isFirstStartUp.asLiveData().observe(viewLifecycleOwner) { isFirstStartUp ->
-            Log.d("TAGYOYO", "INSIDE: $isFirstStartUp")
-            if (isFirstStartUp) {
-                val delay = DateConverterUtils.getFirstDayOfNextMonthTimestamp() - System.currentTimeMillis()
-                val delayTest = 1643049300000 - System.currentTimeMillis()
-                if (delay > 0) {
-                    val monthWork = OneTimeWorkRequest.Builder(MonthlyWorker::class.java)
-                        .setInitialDelay(delayTest, TimeUnit.MILLISECONDS)
-                        .build()
+        runBlocking {
+            DataStoreManager(requireContext()).isFirstStartUp.asLiveData().observe(viewLifecycleOwner) { isFirstStartUp ->
+                if (isFirstStartUp) {
+                    val delay = DateConverterUtils.getFirstDayOfNextMonthTimestamp() - System.currentTimeMillis()
+                    if (delay > 0) {
+                        val monthWork = OneTimeWorkRequest.Builder(MonthlyWorker::class.java)
+                            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+                            .build()
 
-                    WorkManager.getInstance(requireContext()).enqueue(monthWork)
+                        WorkManager.getInstance(requireContext()).enqueue(monthWork)
+                    }
                 }
             }
+        }
+        runBlocking {
+            DataStoreManager(requireContext()).isFirstStartUp.asLiveData()
+                .observe(viewLifecycleOwner) { isFirstStartUp ->
+                    Log.d("TAGYOYO", "INSIDE2: $isFirstStartUp")
+                    if (isFirstStartUp) {
+                        lifecycleScope.launch {
+                            DataStoreManager(requireContext()).saveIsFirstStartUp(false)
+                        }
+                    }
+                }
         }
 
         //initializing navController
@@ -91,7 +103,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         viewModel.getAllExpenses()
 
         //setting current month
-        binding.tvCurrentMonth.text = "${DateConverterUtils.getCurrentMonthFullName()}' ${DateConverterUtils.getCurrentYearShort()}"
+        binding.tvCurrentMonth.text = "${DateConverterUtils.getMonthFullName(System.currentTimeMillis())}' ${DateConverterUtils.getCurrentYearShort()}"
 
 
         binding.llAllExpenses.setOnClickListener {
