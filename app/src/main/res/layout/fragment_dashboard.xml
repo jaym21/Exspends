@@ -88,6 +88,27 @@
 
             </androidx.cardview.widget.CardView>
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cvTotalExpenses"
+                android:backgroundTint="@color/bg_color"
+                app:tabSelectedTextColor="@color/purple_500"
+                app:tabTextAppearance="@style/TabTextAppearance"
+                app:tabTextColor="@color/white_alpha_50"
+                app:tabRippleColor="@null"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="5dp"
+                app:tabIndicatorFullWidth="false"/>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/tabLayout"
+                android:overScrollMode="never" />
+
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
                 android:layout_width="match_parent"

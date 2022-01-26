@@ -23,8 +23,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
+import dev.jaym21.exspends.adapters.ChartsViewPagerAdapter
 import dev.jaym21.exspends.adapters.ExpensesRVAdapter
 import dev.jaym21.exspends.adapters.IExpensesRVAdapter
 import dev.jaym21.exspends.data.datastore.DataStoreManager
@@ -47,6 +49,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     private lateinit var navController: NavController
     private var expensesAdapter = ExpensesRVAdapter(this)
     private lateinit var viewModel: ExpenseViewModel
+    private lateinit var chartsViewPagerAdapter: ChartsViewPagerAdapter
+    private val charts = arrayOf("Current Month", "Monthly Exspends")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,6 +114,21 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         }
 
         observeLatestExpenses()
+
+        chartsViewPagerAdapter = ChartsViewPagerAdapter(parentFragmentManager, lifecycle)
+
+        binding.viewPager.adapter = chartsViewPagerAdapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = charts[position]
+        }.attach()
+
+        for (i in 0 until binding.tabLayout.tabCount) {
+            val tab  = (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+            val params = tab.layoutParams as ViewGroup.MarginLayoutParams
+            params.setMargins(0,0,20,0)
+            tab.requestLayout()
+        }
     }
 
     private fun observeLatestExpenses() {
