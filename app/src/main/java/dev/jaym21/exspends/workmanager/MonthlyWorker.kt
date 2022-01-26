@@ -57,13 +57,14 @@ class MonthlyWorker @AssistedInject constructor(private val expenseRepo: Expense
             }
 
             val currentMonthExpense = MonthlyExpense(
-                DateConverterUtils.getMonthFullName(System.currentTimeMillis()),
+                DateConverterUtils.getMonthFullName(DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()),
                 DateConverterUtils.getCurrentYear(),
                 totalExpenses,
                 System.currentTimeMillis()
             )
             monthlyRepo.insertMonthExpense(currentMonthExpense)
             expenseRepo.clearAllExpenses()
+            showMonthlyTotalNotification(totalExpenses)
         }
     }
 
@@ -83,8 +84,8 @@ class MonthlyWorker @AssistedInject constructor(private val expenseRepo: Expense
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(applicationContext, Constants.DEFAULT_NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Monthly Exspends Update")
-            .setContentText("Your total expenditure for month of $monthName was $totalExpense")
+            .setContentTitle("Exspends")
+            .setContentText("Your total expenditure for month of $monthName was ₹$totalExpense")
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)

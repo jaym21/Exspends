@@ -60,7 +60,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Implement monthly total expenses storing in database with new entity
         //TODO: Add barchart to compare total expenses of previous months
 
         runBlocking {
