@@ -23,7 +23,7 @@
                 android:id="@+id/tvDashboardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dashboard"
+                android:text="@string/dashboard"
                 android:textSize="22sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_bold"
@@ -63,7 +63,7 @@
                             android:id="@+id/tvTotalExpensesText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Total Expenses"
+                            android:text="@string/total_expenses"
                             android:textSize="15sp"
                             android:textColor="@color/text_color_light"
                             android:fontFamily="@font/redhat_semibold"
@@ -109,21 +109,15 @@
                 android:layout_below="@id/tabLayout"
                 android:overScrollMode="never" />
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_below="@id/cvTotalExpenses"/>
-
             <TextView
                 android:id="@+id/tvLatestExpensesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Latest Expenses"
+                android:text="@string/latest_expenses"
                 android:textSize="17sp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/redhat_semibold"
-                android:layout_below="@id/pieChart"
+                android:layout_below="@id/viewPager"
                 android:layout_marginTop="30dp"/>
 
             <LinearLayout
@@ -131,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/pieChart"
+                android:layout_below="@id/viewPager"
                 android:layout_marginTop="30dp"
                 android:layout_alignBottom="@id/tvLatestExpensesText"
                 android:layout_alignParentEnd="true">
@@ -140,7 +134,7 @@
                     android:id="@+id/tvAllExpenses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All Expenses"
+                    android:text="@string/all_expenses"
                     android:textColor="@color/purple_500"
                     android:textSize="14sp"
                     android:fontFamily="@font/redhat_semibold"

@@ -18,4 +18,7 @@
     <string name="delete">Delete</string>
     <string name="do_you_want_to_delete_this_expense">Do you want to delete this expense?</string>
     <string name="no_expenses_present">No expenses present</string>
+    <string name="latest_expenses">Latest Expenses</string>
+    <string name="total_expenses">Total Expenses</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

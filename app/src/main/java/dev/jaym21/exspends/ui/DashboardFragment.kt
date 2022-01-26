@@ -64,8 +64,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Add barchart to compare total expenses of previous months
-
         runBlocking {
             DataStoreManager(requireContext()).isFirstStartUp.asLiveData().observe(viewLifecycleOwner) { isFirstStartUp ->
                 if (isFirstStartUp) {
@@ -115,7 +113,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
         observeLatestExpenses()
 
-        chartsViewPagerAdapter = ChartsViewPagerAdapter(parentFragmentManager, lifecycle)
+        chartsViewPagerAdapter = ChartsViewPagerAdapter(childFragmentManager, lifecycle)
 
         binding.viewPager.adapter = chartsViewPagerAdapter
 
@@ -139,7 +137,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                 when(it) {
                     is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.pieChart.visibility = View.VISIBLE
+                        binding.tabLayout.visibility = View.VISIBLE
+                        binding.viewPager.visibility = View.VISIBLE
                         binding.rvLatestExpenses.visibility = View.VISIBLE
                         binding.tvLatestExpensesText.visibility = View.VISIBLE
                         binding.llAllExpenses.visibility = View.VISIBLE
@@ -153,14 +152,14 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
                         binding.tvTotalExpenses.text = "₹${viewModel.totalExpenses}"
 
-                        setUpPieChart()
                     }
                     is AllExpensesState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
                     is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.pieChart.visibility = View.GONE
+                        binding.tabLayout.visibility = View.GONE
+                        binding.viewPager.visibility = View.GONE
                         binding.tvLatestExpensesText.visibility = View.GONE
                         binding.llAllExpenses.visibility = View.GONE
                         binding.rvLatestExpenses.visibility = View.GONE
@@ -169,69 +168,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                 }
             }
         }
-    }
-
-    private fun setUpPieChart() {
-        binding.pieChart.description.isEnabled = false
-        binding.pieChart.isDrawHoleEnabled = true
-        binding.pieChart.holeRadius = 58f
-        binding.pieChart.setUsePercentValues(true)
-        binding.pieChart.setDrawEntryLabels(false)
-        binding.pieChart.setDrawCenterText(true)
-        binding.pieChart.isRotationEnabled = false
-        binding.pieChart.setTouchEnabled(false)
-        binding.pieChart.highlightValues(null)
-        binding.pieChart.setEntryLabelColor(Color.WHITE)
-        binding.pieChart.setExtraOffsets(0f, 10f, 25f, 0f)
-        binding.pieChart.setEntryLabelTextSize(12f)
-        binding.pieChart.setHoleColor(ContextCompat.getColor(requireContext(), R.color.bg_color))
-        binding.pieChart.animateY(1400, Easing.EaseInOutQuad)
-
-
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry((viewModel.totalGroceries * 100/viewModel.totalExpenses).toFloat(), "Groceries"))
-        entries.add(PieEntry((viewModel.totalShopping * 100/viewModel.totalExpenses).toFloat(), "Shopping"))
-        entries.add(PieEntry((viewModel.totalSubscriptions * 100/viewModel.totalExpenses).toFloat(), "Subscriptions"))
-        entries.add(PieEntry((viewModel.totalEntertainment * 100/viewModel.totalExpenses).toFloat(), "Entertainment"))
-        entries.add(PieEntry((viewModel.totalRestaurant * 100/viewModel.totalExpenses).toFloat(), "Restaurant"))
-        entries.add(PieEntry((viewModel.totalTravel * 100/viewModel.totalExpenses).toFloat(), "Travel"))
-        entries.add(PieEntry((viewModel.totalBills * 100/viewModel.totalExpenses).toFloat(), "Bills"))
-        entries.add(PieEntry((viewModel.totalOthers * 100/viewModel.totalExpenses).toFloat(), "Others"))
-
-        val colors = ArrayList<Int>()
-        colors.add(ContextCompat.getColor(requireContext(), R.color.green))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.blue))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.orange))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.red))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.purple))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.yellow))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.turquoise))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.grey))
-
-        val dataSet = PieDataSet(entries, "")
-        dataSet.colors = colors
-
-        val data = PieData(dataSet)
-        data.setValueFormatter(CustomPercentFormatter())
-        data.setValueTextSize(10f)
-        data.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-        //legend
-        val legend = binding.pieChart.legend
-        legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-        legend.orientation = Legend.LegendOrientation.VERTICAL
-        legend.form = Legend.LegendForm.CIRCLE
-        legend.formSize = 10f
-        legend.setDrawInside(false)
-        legend.xEntrySpace = 7f
-        legend.yEntrySpace = 0f
-        legend.yOffset = 30f
-        legend.textColor = ContextCompat.getColor(requireContext(), R.color.white_alpha_70)
-        legend.textSize = 12f
-
-        binding.pieChart.data = data
-        binding.pieChart.invalidate()
     }
 
     private fun setUpRecyclerView() {

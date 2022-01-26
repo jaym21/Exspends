@@ -5,5 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.charts.CurrentMonthFragment">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </FrameLayout>
