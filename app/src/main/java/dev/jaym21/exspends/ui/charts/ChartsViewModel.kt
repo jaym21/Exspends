@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.jaym21.exspends.data.models.Expense
 import dev.jaym21.exspends.data.repository.ExpenseRepository
+import dev.jaym21.exspends.data.repository.MonthlyExpenseRepository
 import dev.jaym21.exspends.stateflows.AllExpensesState
+import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,10 +16,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChartsViewModel @Inject constructor(private val repo: ExpenseRepository): ViewModel() {
+class ChartsViewModel @Inject constructor(private val expenseRepo: ExpenseRepository, private val monthlyRepo: MonthlyExpenseRepository): ViewModel() {
 
     private val _allExpenses = MutableStateFlow<AllExpensesState>(AllExpensesState.Loading)
     val allExpenses: StateFlow<AllExpensesState> = _allExpenses
+    private val _allMonthlyExpenses = MutableStateFlow<AllMonthlyExpensesState>(AllMonthlyExpensesState.Loading)
+    val allMonthlyExpenses: StateFlow<AllMonthlyExpensesState> = _allMonthlyExpenses
 
     var totalExpenses = 0.0
     var totalGroceries = 0.0
@@ -30,7 +34,7 @@ class ChartsViewModel @Inject constructor(private val repo: ExpenseRepository): 
     var totalOthers = 0.0
 
     fun getAllExpenses() = viewModelScope.launch(Dispatchers.IO) {
-        repo.getAllExpenses().collect { expenses ->
+        expenseRepo.getAllExpenses().collect { expenses ->
             if (expenses.isNullOrEmpty()) {
                 _allExpenses.value = AllExpensesState.Empty
             } else {
@@ -50,6 +54,16 @@ class ChartsViewModel @Inject constructor(private val repo: ExpenseRepository): 
                 updateCategoryTotal(expenses)
 
                 _allExpenses.value = AllExpensesState.Success(expenses)
+            }
+        }
+    }
+
+    fun getAllMonthlyExpenses() = viewModelScope.launch(Dispatchers.IO) {
+        monthlyRepo.getAllMonthlyExpenses().collect {
+            if (it.isNullOrEmpty()) {
+                _allMonthlyExpenses.value = AllMonthlyExpensesState.Empty
+            } else {
+                _allMonthlyExpenses.value = AllMonthlyExpensesState.Success(it)
             }
         }
     }
