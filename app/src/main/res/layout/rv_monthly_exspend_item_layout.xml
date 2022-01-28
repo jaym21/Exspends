@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bg_color">
+
+    <LinearLayout
+        android:id="@+id/llMonthYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="January"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_semibold"/>
+
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            tools:text="2022"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/redhat_semibold"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivCircle"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_timeline_circle"
+        app:tint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/llMonthYear"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toTopOf="@+id/ivCircle"
+        app:layout_constraintEnd_toEndOf="@id/ivCircle"
+        app:layout_constraintStart_toStartOf="@+id/ivCircle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+        app:layout_constraintStart_toStartOf="@+id/ivCircle"
+        app:layout_constraintTop_toBottomOf="@+id/ivCircle" />
+
+    <TextView
+        android:id="@+id/tvTotalMonthExspends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="₹20000"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/redhat_semibold"
+        app:layout_constraintStart_toEndOf="@id/ivCircle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

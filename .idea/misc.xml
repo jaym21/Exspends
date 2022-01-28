@@ -31,6 +31,7 @@
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/entertainment_underline_bg.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/groceries_underline_bg.xml" value="0.39479166666666665" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/ic_calendar.xml" value="0.3828125" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/ic_circle_shape.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/ic_eatingout.xml" value="0.22135416666666666" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/ic_groceries.xml" value="0.3828125" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/drawable/ic_personal.xml" value="0.3828125" />
@@ -60,6 +61,7 @@
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_monthly_exspends2.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_pie_chart.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/rv_expense_item_layout.xml" value="0.33" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/rv_monthly_exspend_item_layout.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
