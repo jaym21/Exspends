@@ -100,7 +100,8 @@
                 app:tabRippleColor="@null"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="5dp"
-                app:tabIndicatorFullWidth="false"/>
+                app:tabIndicatorFullWidth="false"
+                android:layout_marginBottom="10dp"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"

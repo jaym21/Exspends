@@ -5,5 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.charts.MonthlyExspendsFragment">
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/tvNoMonthlyExpenseData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_monthly_exspends_available_currently"
+        android:textSize="13sp"
+        android:textColor="@color/white_alpha_60"
+        android:fontFamily="@font/redhat_regular"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </FrameLayout>
