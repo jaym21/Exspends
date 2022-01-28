@@ -51,11 +51,13 @@
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/delete_dialog_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_add_expense.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_all_expenses.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_all_monthly_exspends.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_bar_chart.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_current_month.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_dashboard.xml" value="0.33" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_expense_open.xml" value="0.35260416666666666" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_monthly_exspends.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_monthly_exspends2.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/fragment_pie_chart.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/AndroidAppDevelopment/Exspends/app/src/main/res/layout/rv_expense_item_layout.xml" value="0.33" />
       </map>

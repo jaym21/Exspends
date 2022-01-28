@@ -1,11 +1,10 @@
-package dev.jaym21.exspends.ui.charts
+package dev.jaym21.exspends.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.jaym21.exspends.R
 import dev.jaym21.exspends.databinding.FragmentAllMonthlyExspendsBinding
 
 class AllMonthlyExspendsFragment : Fragment() {
@@ -19,7 +18,7 @@ class AllMonthlyExspendsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentAllMonthlyExspendsBinding.inflate(layoutInflater)
+        _binding = FragmentAllMonthlyExspendsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
