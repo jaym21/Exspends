@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="₹20000"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textColor="@color/white"
         android:fontFamily="@font/redhat_semibold"
         app:layout_constraintStart_toEndOf="@id/ivCircle"
