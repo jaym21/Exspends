@@ -5,13 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import dev.jaym21.exspends.adapters.MonthlyExspendsRVAdapter
 import dev.jaym21.exspends.databinding.FragmentAllMonthlyExspendsBinding
+import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
+import dev.jaym21.exspends.ui.charts.ChartsViewModel
+import kotlinx.coroutines.flow.collect
 
 class AllMonthlyExspendsFragment : Fragment() {
 
     private var _binding: FragmentAllMonthlyExspendsBinding? = null
     private val binding: FragmentAllMonthlyExspendsBinding
         get() = _binding!!
+    private lateinit var navController: NavController
+    private lateinit var viewModel: ChartsViewModel
+    private var monthlyExspendsAdapter = MonthlyExspendsRVAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +35,36 @@ class AllMonthlyExspendsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //initializing navController
+        navController = Navigation.findNavController(view)
+
+        viewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
+
+        viewModel.getAllMonthlyExpenses()
+
+        setUpRecyclerView()
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.allMonthlyExpenses.collect {
+                when(it) {
+                    is AllMonthlyExpensesState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+
+                    }
+                    is AllMonthlyExpensesState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is AllMonthlyExpensesState.Empty -> {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUpRecyclerView() {
+        binding.rvAllMonthlyExspends
     }
 
     override fun onDestroy() {
