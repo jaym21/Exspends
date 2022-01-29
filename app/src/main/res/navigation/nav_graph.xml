@@ -31,6 +31,13 @@
             app:popExitAnim="@anim/slide_out_right"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_allMonthlyExspendsFragment"
+            app:destination="@id/allMonthlyExspendsFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
@@ -67,14 +74,5 @@
         android:name="dev.jaym21.exspends.ui.AllMonthlyExspendsFragment"
         android:label="fragment_all_monthly_exspends"
         tools:layout="@layout/fragment_all_monthly_exspends" />
-    <fragment
-        android:id="@+id/monthlyExspendsFragment"
-        android:name="dev.jaym21.exspends.ui.charts.MonthlyExspendsFragment"
-        android:label="fragment_monthly_exspends"
-        tools:layout="@layout/fragment_monthly_exspends" >
-        <action
-            android:id="@+id/action_monthlyExspendsFragment_to_allMonthlyExspendsFragment"
-            app:destination="@id/allMonthlyExspendsFragment" />
-    </fragment>
 
 </navigation>
