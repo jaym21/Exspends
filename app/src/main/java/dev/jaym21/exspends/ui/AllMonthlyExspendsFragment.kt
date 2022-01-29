@@ -40,6 +40,10 @@ class AllMonthlyExspendsFragment : Fragment() {
         //initializing navController
         navController = Navigation.findNavController(view)
 
+        binding.ivBack.setOnClickListener {
+            navController.popBackStack()
+        }
+
         viewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
 
         viewModel.getAllMonthlyExpenses()
