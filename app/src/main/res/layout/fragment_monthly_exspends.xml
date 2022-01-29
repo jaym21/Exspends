@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.charts.MonthlyExspendsFragment">
+
+    <LinearLayout
+        android:id="@+id/llAllMonthlyExspends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:id="@+id/tvAllMonthlyExspends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_expenses"
+            android:textColor="@color/purple_500"
+            android:textSize="14sp"
+            android:fontFamily="@font/redhat_semibold"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_forward_arrow"
+            app:tint="@color/purple_500" />
+
+    </LinearLayout>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/llAllMonthlyExspends"
+        android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/tvNoMonthlyExpenseData"
@@ -29,4 +59,4 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-</FrameLayout>
+</RelativeLayout>

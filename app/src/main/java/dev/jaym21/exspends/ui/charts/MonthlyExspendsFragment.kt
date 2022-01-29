@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -29,8 +31,8 @@ class MonthlyExspendsFragment : Fragment() {
     private var _binding: FragmentMonthlyExspendsBinding? = null
     private val binding: FragmentMonthlyExspendsBinding
         get() = _binding!!
+    private lateinit var navController: NavController
     private lateinit var viewModel: ChartsViewModel
-    private var monthlyList = arrayListOf<MonthlyExpense>()
     private val xAxisLabel = ArrayList<String>()
 
     override fun onCreateView(
@@ -45,7 +47,14 @@ class MonthlyExspendsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //initializing navController
+        navController = Navigation.findNavController(view)
+
         viewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
+
+        binding.llAllMonthlyExspends.setOnClickListener {
+            navController.navigate(R.id.action_monthlyExspendsFragment_to_allMonthlyExspendsFragment)
+        }
 
         viewModel.getAllMonthlyExpenses()
 
