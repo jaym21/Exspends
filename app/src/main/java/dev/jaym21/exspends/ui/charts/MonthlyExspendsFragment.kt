@@ -26,12 +26,11 @@ import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class MonthlyExspendsFragment : Fragment() {
+class MonthlyExspendsFragment(private val navController: NavController) : Fragment() {
 
     private var _binding: FragmentMonthlyExspendsBinding? = null
     private val binding: FragmentMonthlyExspendsBinding
         get() = _binding!!
-    private lateinit var navController: NavController
     private lateinit var viewModel: ChartsViewModel
     private val xAxisLabel = ArrayList<String>()
 
@@ -47,13 +46,10 @@ class MonthlyExspendsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initializing navController
-        navController = Navigation.findNavController(view)
-
         viewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
 
         binding.llAllMonthlyExspends.setOnClickListener {
-            navController.navigate(R.id.action_monthlyExspendsFragment_to_allMonthlyExspendsFragment)
+            navController.navigate(R.id.action_dashboardFragment_to_allMonthlyExspendsFragment)
         }
 
         viewModel.getAllMonthlyExpenses()

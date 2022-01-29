@@ -106,7 +106,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
 
         observeLatestExpenses()
 
-        chartsViewPagerAdapter = ChartsViewPagerAdapter(childFragmentManager, lifecycle)
+        chartsViewPagerAdapter = ChartsViewPagerAdapter(childFragmentManager, lifecycle, navController)
 
         binding.viewPager.adapter = chartsViewPagerAdapter
 

@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
+import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.MonthlyExspendsRVAdapter
 import dev.jaym21.exspends.data.models.MonthlyExpense
 import dev.jaym21.exspends.databinding.FragmentAllMonthlyExspendsBinding
@@ -17,6 +20,7 @@ import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
 import dev.jaym21.exspends.ui.charts.ChartsViewModel
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class AllMonthlyExspendsFragment : Fragment() {
 
     private var _binding: FragmentAllMonthlyExspendsBinding? = null
@@ -51,33 +55,42 @@ class AllMonthlyExspendsFragment : Fragment() {
 
         setUpRecyclerView()
 
-        val sample = ArrayList<MonthlyExpense>()
-        sample.add(MonthlyExpense("December", "2021", 5674.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("January", "2022", 81034.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("February", "2022", 235.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("March", "2022", 83534.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("April", "2022", 2423.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("May", "2022", 64546.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("June", "2022", 547676.0, System.currentTimeMillis()))
-        sample.add(MonthlyExpense("July", "2022", 3453453.0, System.currentTimeMillis()))
-        monthlyExspendsAdapter.submitList(sample)
+//        val sample = ArrayList<MonthlyExpense>()
+//        sample.add(MonthlyExpense("December", "2021", 5674.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("January", "2022", 81034.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("February", "2022", 235.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("March", "2022", 83534.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("April", "2022", 2423.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("May", "2022", 64546.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("June", "2022", 547676.0, System.currentTimeMillis()))
+//        sample.add(MonthlyExpense("July", "2022", 3453453.0, System.currentTimeMillis()))
 
-//        lifecycleScope.launchWhenCreated {
-//            viewModel.allMonthlyExpenses.collect {
-//                when(it) {
-//                    is AllMonthlyExpensesState.Success -> {
-//                        binding.progressBar.visibility = View.GONE
-//                        monthlyExspendsAdapter.submitList(it.monthlyExpenses)
-//                    }
-//                    is AllMonthlyExpensesState.Loading -> {
-//                        binding.progressBar.visibility = View.VISIBLE
-//                    }
-//                    is AllMonthlyExpensesState.Empty -> {
-//                        binding.progressBar.visibility = View.GONE
-//                    }
-//                }
-//            }
-//        }
+        lifecycleScope.launchWhenCreated {
+            viewModel.allMonthlyExpenses.collect {
+                when(it) {
+                    is AllMonthlyExpensesState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        monthlyExspendsAdapter.submitList(it.monthlyExpenses.reversed())
+                    }
+                    is AllMonthlyExpensesState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is AllMonthlyExpensesState.Empty -> {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        animateUnderline()
+    }
+
+    private fun animateUnderline() {
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.underline_animation)
+        binding.underline.startAnimation(animation)
     }
 
     private fun setUpRecyclerView() {
