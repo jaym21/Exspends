@@ -62,5 +62,19 @@
             app:argType="dev.jaym21.exspends.data.models.Expense"/>
 
     </fragment>
+    <fragment
+        android:id="@+id/allMonthlyExspendsFragment"
+        android:name="dev.jaym21.exspends.ui.AllMonthlyExspendsFragment"
+        android:label="fragment_all_monthly_exspends"
+        tools:layout="@layout/fragment_all_monthly_exspends" />
+    <fragment
+        android:id="@+id/monthlyExspendsFragment"
+        android:name="dev.jaym21.exspends.ui.charts.MonthlyExspendsFragment"
+        android:label="fragment_monthly_exspends"
+        tools:layout="@layout/fragment_monthly_exspends" >
+        <action
+            android:id="@+id/action_monthlyExspendsFragment_to_allMonthlyExspendsFragment"
+            app:destination="@id/allMonthlyExspendsFragment" />
+    </fragment>
 
 </navigation>
