@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.jaym21.exspends.adapters.MonthlyExspendsRVAdapter
 import dev.jaym21.exspends.databinding.FragmentAllMonthlyExspendsBinding
 import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
@@ -50,7 +51,7 @@ class AllMonthlyExspendsFragment : Fragment() {
                 when(it) {
                     is AllMonthlyExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
-
+                        monthlyExspendsAdapter.submitList(it.monthlyExpenses)
                     }
                     is AllMonthlyExpensesState.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -64,7 +65,10 @@ class AllMonthlyExspendsFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        binding.rvAllMonthlyExspends
+        binding.rvAllMonthlyExspends.apply {
+            adapter = monthlyExspendsAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        }
     }
 
     override fun onDestroy() {
