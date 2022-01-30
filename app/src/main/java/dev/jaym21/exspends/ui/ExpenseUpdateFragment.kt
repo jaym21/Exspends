@@ -30,7 +30,6 @@ class ExpenseUpdateFragment : Fragment(), View.OnClickListener {
     private lateinit var navController: NavController
     private lateinit var viewModel: ExpenseViewModel
     private var expense: Expense? = null
-    private var expenseTimestamp: Long? = null
     private var categorySelected: String? = null
 
     override fun onCreateView(
@@ -65,11 +64,19 @@ class ExpenseUpdateFragment : Fragment(), View.OnClickListener {
             }
 
             updateCategoryUnderlineAndIcon(expense!!.category)
-
+            categorySelected = expense!!.category
             binding.tvCategoryName.text = "${expense!!.category[0].uppercase()}${expense!!.category.substring(1)}"
             binding.etExpenseTitleUpdate.setText(expense!!.title)
-            binding.etExpenseAmountUpdate.setText("₹${expense!!.amount}")
+            binding.etExpenseAmountUpdate.setText("${expense!!.amount}")
             binding.etExpenseDateUpdate.setText(expense!!.date)
+
+            binding.btnUpdateExpense.setOnClickListener {
+                if (checkAllFieldsEntered()) {
+                    val updatedExpense = Expense(binding.etExpenseTitleUpdate.text.toString(), binding.etExpenseAmountUpdate.text.toString().toDouble(), categorySelected!!, binding.etExpenseDateUpdate.text.toString(),  DateConverterUtils.getTimestamp(binding.etExpenseDateUpdate.text.toString()), expense!!.id)
+                    viewModel.updateExpense(updatedExpense)
+                    navController.popBackStack(R.id.dashboardFragment, false)
+                }
+            }
         } else {
             navController.popBackStack()
         }
@@ -82,41 +89,114 @@ class ExpenseUpdateFragment : Fragment(), View.OnClickListener {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.groceries_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_groceries).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.green))
+
+                //selecting category
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_selected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "shopping" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.shopping_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_shopping).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.blue))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_selected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "subscription" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.subscriptions_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_subscriptions).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.orange))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_selected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "entertainment" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.entertainment_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_entertainment).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_selected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "restaurant" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.restaurant_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_restaurant).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.purple))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_selected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "travel" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.travel_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_travel).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.yellow))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_selected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "bills" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.bills_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_bill).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.turquoise))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_selected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_notselected_bg)
             }
             "others" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.others_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_others).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.grey))
+
+                binding.tvGroceries.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_groceries_notselected_bg)
+                binding.tvShopping.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_shopping_notselected_bg)
+                binding.tvSubscription.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_subscription_notselected_bg)
+                binding.tvEntertainment.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_entertainment_notselected_bg)
+                binding.tvRestaurant.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_restaurant_notselected_bg)
+                binding.tvTravel.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_travel_notselected_bg)
+                binding.tvBills.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_personal_notselected_bg)
+                binding.tvOthers.background = ContextCompat.getDrawable(requireContext(), R.drawable.category_others_selected_bg)
             }
         }
     }
