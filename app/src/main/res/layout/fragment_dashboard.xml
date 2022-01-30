@@ -172,6 +172,46 @@
 
     </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/tvNoExpensesDataText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_expenses_added"
+            android:textSize="15sp"
+            android:textColor="@color/white_alpha_60"
+            android:fontFamily="@font/redhat_regular"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_your_expenses_by_pressing_button"
+            android:textSize="15sp"
+            android:textColor="@color/white_alpha_60"
+            android:fontFamily="@font/redhat_regular"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivCurlingArrow"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_curling_arrow"
+        app:tint="@color/white_alpha_80"
+        android:layout_toStartOf="@id/fabAddExpense"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:visibility="gone"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddExpense"

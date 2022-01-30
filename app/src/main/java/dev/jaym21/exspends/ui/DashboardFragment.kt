@@ -130,6 +130,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                 when(it) {
                     is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.tvNoExpensesDataText.visibility = View.GONE
+                        binding.ivCurlingArrow.visibility = View.GONE
                         binding.tabLayout.visibility = View.VISIBLE
                         binding.viewPager.visibility = View.VISIBLE
                         binding.rvLatestExpenses.visibility = View.VISIBLE
@@ -156,6 +158,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                         binding.tvLatestExpensesText.visibility = View.GONE
                         binding.llAllExpenses.visibility = View.GONE
                         binding.rvLatestExpenses.visibility = View.GONE
+                        binding.tvNoExpensesDataText.visibility = View.VISIBLE
+                        binding.ivCurlingArrow.visibility = View.VISIBLE
                         binding.tvTotalExpenses.text = "₹0"
                     }
                 }
