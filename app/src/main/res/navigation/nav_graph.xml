@@ -45,6 +45,7 @@
         android:name="dev.jaym21.exspends.ui.AddExpenseFragment"
         android:label="fragment_add_expense"
         tools:layout="@layout/fragment_add_expense" />
+
     <fragment
         android:id="@+id/allExpensesFragment"
         android:name="dev.jaym21.exspends.ui.AllExpensesFragment"
@@ -58,6 +59,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
     </fragment>
+
     <fragment
         android:id="@+id/expenseOpenFragment"
         android:name="dev.jaym21.exspends.ui.ExpenseOpenFragment"
@@ -67,12 +69,32 @@
         <argument
             android:name="expense"
             app:argType="dev.jaym21.exspends.data.models.Expense"/>
+        <action
+            android:id="@+id/action_expenseOpenFragment_to_expenseUpdateFragment"
+            app:destination="@id/expenseUpdateFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
 
     </fragment>
+
     <fragment
         android:id="@+id/allMonthlyExspendsFragment"
         android:name="dev.jaym21.exspends.ui.AllMonthlyExspendsFragment"
         android:label="fragment_all_monthly_exspends"
         tools:layout="@layout/fragment_all_monthly_exspends" />
+
+    <fragment
+        android:id="@+id/expenseUpdateFragment"
+        android:name="dev.jaym21.exspends.ui.ExpenseUpdateFragment"
+        android:label="fragment_expense_update"
+        tools:layout="@layout/fragment_expense_update" >
+
+        <argument
+            android:name="expense"
+            app:argType="dev.jaym21.exspends.data.models.Expense"/>
+
+    </fragment>
 
 </navigation>
