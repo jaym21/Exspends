@@ -24,4 +24,5 @@
     <string name="no_monthly_expense_available_currently">No monthly expense available currently</string>
     <string name="all_monthly_expenses">All Monthly Expenses</string>
     <string name="update_expense">Update Expense</string>
+    <string name="spent_on">Spent on</string>
 </resources>

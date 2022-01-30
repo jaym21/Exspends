@@ -26,6 +26,16 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="20dp" />
 
+    <ImageView
+        android:id="@+id/ivEditExpense"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_edit"
+        app:tint="@color/white"
+        android:layout_toStartOf="@id/ivDeleteExpense"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"/>
+
     <LinearLayout
         android:id="@+id/llCategoryText"
         android:layout_width="match_parent"
@@ -141,7 +151,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Spent on"
+            android:text="@string/spent_on"
             android:textSize="14sp"
             android:textColor="@color/text_color_light"
             android:fontFamily="@font/redhat_regular" />
