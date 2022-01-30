@@ -1,8 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ExpenseUpdateFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.ExpenseUpdateFragment"
+    android:background="@color/bg_color"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back_arrow"
+        app:tint="@color/white"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:id="@+id/llCategoryText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/ivBack"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Groceries"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/redhat_semibold"
+                android:layout_marginTop="6dp" />
+
+            <View
+                android:id="@+id/underline"
+                android:layout_width="55dp"
+                android:layout_height="8dp"
+                tools:background="@drawable/groceries_underline_bg"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            tools:src="@drawable/ic_groceries"
+            tools:tint="@color/green"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
