@@ -134,6 +134,8 @@
                     android:fontFamily="@font/redhat_regular"
                     android:background="@drawable/edittext_bg"
                     android:inputType="numberDecimal|textNoSuggestions"
+                    android:drawableStart="@drawable/ic_rupee"
+                    android:drawableTint="@color/white"
                     android:padding="5dp"
                     android:layout_marginTop="6dp"/>
 
