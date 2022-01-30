@@ -21,5 +21,6 @@
     <string name="latest_expenses">Latest Expenses</string>
     <string name="total_expenses">Total Expenses</string>
     <string name="dashboard">Dashboard</string>
-    <string name="no_monthly_exspends_available_currently">No monthly exspends available currently</string>
+    <string name="no_monthly_expense_available_currently">No monthly expense available currently</string>
+    <string name="all_monthly_expenses">All Monthly Expenses</string>
 </resources>

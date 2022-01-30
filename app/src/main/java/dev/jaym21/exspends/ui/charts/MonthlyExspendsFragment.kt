@@ -48,7 +48,7 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
 
         viewModel = ViewModelProvider(this).get(ChartsViewModel::class.java)
 
-        binding.llAllMonthlyExspends.setOnClickListener {
+        binding.llAllMonthlyExpenses.setOnClickListener {
             navController.navigate(R.id.action_dashboardFragment_to_allMonthlyExspendsFragment)
         }
 
@@ -60,6 +60,7 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
                     is AllMonthlyExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
                         binding.barChart.visibility = View.VISIBLE
+                        binding.llAllMonthlyExpenses.visibility = View.VISIBLE
                         binding.tvNoMonthlyExpenseData.visibility = View.GONE
                         val monthlyExpenses = if (it.monthlyExpenses.size > 6) {
                             it.monthlyExpenses.subList(0, 6)
@@ -74,6 +75,7 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
                     is AllMonthlyExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
                         binding.barChart.visibility = View.GONE
+                        binding.llAllMonthlyExpenses.visibility = View.GONE
                         binding.tvNoMonthlyExpenseData.visibility = View.VISIBLE
                     }
                 }

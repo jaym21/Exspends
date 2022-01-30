@@ -7,7 +7,7 @@
     tools:context=".ui.charts.MonthlyExspendsFragment">
 
     <LinearLayout
-        android:id="@+id/llAllMonthlyExspends"
+        android:id="@+id/llAllMonthlyExpenses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,18 +16,18 @@
         android:layout_marginEnd="10dp">
 
         <TextView
-            android:id="@+id/tvAllMonthlyExspends"
+            android:id="@+id/tvAllMonthlyExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/all_expenses"
+            android:text="@string/all_monthly_expenses"
             android:textColor="@color/purple_500"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:fontFamily="@font/redhat_semibold"
             android:layout_gravity="center"/>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:src="@drawable/ic_forward_arrow"
             app:tint="@color/purple_500" />
 
@@ -37,14 +37,14 @@
         android:id="@+id/barChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/llAllMonthlyExspends"
+        android:layout_below="@id/llAllMonthlyExpenses"
         android:layout_marginTop="5dp"/>
 
     <TextView
         android:id="@+id/tvNoMonthlyExpenseData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_monthly_exspends_available_currently"
+        android:text="@string/no_monthly_expense_available_currently"
         android:textSize="13sp"
         android:textColor="@color/white_alpha_60"
         android:fontFamily="@font/redhat_regular"

@@ -43,7 +43,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     private var expensesAdapter = ExpensesRVAdapter(this)
     private lateinit var viewModel: ExpenseViewModel
     private lateinit var chartsViewPagerAdapter: ChartsViewPagerAdapter
-    private val charts = arrayOf("Current Month", "Monthly Exspends")
+    private val charts = arrayOf("Current Month", "Monthly Expenses")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -51,6 +51,8 @@ class CurrentMonthFragment : Fragment() {
                 when(it) {
                     is AllExpensesState.Success -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.tvCurrentMonthData.visibility = View.GONE
+                        binding.pieChart.visibility = View.VISIBLE
                         setUpPieChart()
                     }
                     is AllExpensesState.Loading -> {
@@ -58,6 +60,8 @@ class CurrentMonthFragment : Fragment() {
                     }
                     is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.tvCurrentMonthData.visibility = View.VISIBLE
+                        binding.pieChart.visibility = View.GONE
                     }
                 }
             }
