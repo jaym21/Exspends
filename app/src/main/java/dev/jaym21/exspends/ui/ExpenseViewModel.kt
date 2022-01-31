@@ -27,6 +27,7 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
     var totalRestaurant = 0.0
     var totalTravel = 0.0
     var totalBills = 0.0
+    var totalInvestments = 0.0
     var totalOthers = 0.0
 
     fun addExpense(expense: Expense) = viewModelScope.launch(Dispatchers.IO) {
@@ -55,6 +56,7 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
                 totalRestaurant = 0.0
                 totalTravel = 0.0
                 totalBills = 0.0
+                totalInvestments = 0.0
                 totalOthers = 0.0
 
                 //updating the total expense and total for categories
@@ -95,6 +97,9 @@ class ExpenseViewModel @Inject constructor(private val repo: ExpenseRepository):
                 }
                 "bills" -> {
                     totalBills += expense.amount
+                }
+                "investments" -> {
+                    totalInvestments += expense.amount
                 }
                 "others" -> {
                     totalOthers += expense.amount

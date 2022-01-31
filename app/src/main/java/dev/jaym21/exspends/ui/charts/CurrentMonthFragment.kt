@@ -14,6 +14,7 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.databinding.FragmentCurrentMonthBinding
@@ -94,6 +95,7 @@ class CurrentMonthFragment : Fragment() {
         entries.add(PieEntry((viewModel.totalRestaurant * 100/viewModel.totalExpenses).toFloat(), "Restaurant"))
         entries.add(PieEntry((viewModel.totalTravel * 100/viewModel.totalExpenses).toFloat(), "Travel"))
         entries.add(PieEntry((viewModel.totalBills * 100/viewModel.totalExpenses).toFloat(), "Bills"))
+        entries.add(PieEntry((viewModel.totalInvestments * 100/viewModel.totalExpenses).toFloat(), "Investments"))
         entries.add(PieEntry((viewModel.totalOthers * 100/viewModel.totalExpenses).toFloat(), "Others"))
 
         val colors = ArrayList<Int>()
@@ -104,13 +106,14 @@ class CurrentMonthFragment : Fragment() {
         colors.add(ContextCompat.getColor(requireContext(), R.color.purple))
         colors.add(ContextCompat.getColor(requireContext(), R.color.yellow))
         colors.add(ContextCompat.getColor(requireContext(), R.color.turquoise))
+        colors.add(ContextCompat.getColor(requireContext(), R.color.pink))
         colors.add(ContextCompat.getColor(requireContext(), R.color.grey))
 
         val dataSet = PieDataSet(entries, "")
         dataSet.colors = colors
 
         val data = PieData(dataSet)
-        data.setValueFormatter(DashboardFragment.CustomPercentFormatter())
+        data.setValueFormatter(CustomPercentFormatter())
         data.setValueTextSize(10f)
         data.setValueTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
@@ -130,6 +133,16 @@ class CurrentMonthFragment : Fragment() {
 
         binding.pieChart.data = data
         binding.pieChart.invalidate()
+    }
+
+
+    class CustomPercentFormatter: ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            if (value == 0.0f) {
+                return  ""
+            }
+            return "${"%.2f".format(value)}%"
+        }
     }
 
     override fun onDestroy() {

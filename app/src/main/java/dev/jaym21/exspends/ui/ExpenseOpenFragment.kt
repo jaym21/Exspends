@@ -141,6 +141,11 @@ class ExpenseOpenFragment : Fragment() {
                 Glide.with(requireContext()).load(R.drawable.ic_bill).into(binding.ivCategoryIcon)
                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.turquoise))
             }
+             "investments" -> {
+                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.investments_underline_bg)
+                 Glide.with(requireContext()).load(R.drawable.ic_investments).into(binding.ivCategoryIcon)
+                 binding.ivCategoryIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.pink))
+             }
             "others" -> {
                 binding.underline.background = ContextCompat.getDrawable(requireContext(), R.drawable.others_underline_bg)
                 Glide.with(requireContext()).load(R.drawable.ic_others).into(binding.ivCategoryIcon)

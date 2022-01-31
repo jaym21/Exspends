@@ -243,8 +243,20 @@
                         android:textSize="16sp"
                         android:textColor="@color/white"
                         android:fontFamily="@font/redhat_regular"
-                        android:background="@drawable/category_personal_notselected_bg"
+                        android:background="@drawable/category_bills_notselected_bg"
                         android:padding="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tvInvestments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/investments"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/redhat_regular"
+                        android:background="@drawable/category_investments_notselected_bg"
+                        android:padding="10dp"
+                        android:layout_marginStart="10dp"/>
 
                     <TextView
                         android:id="@+id/tvOthers"

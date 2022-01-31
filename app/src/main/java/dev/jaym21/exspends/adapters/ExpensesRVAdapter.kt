@@ -91,6 +91,11 @@ class ExpensesRVAdapter(private val listener: IExpensesRVAdapter): ListAdapter<E
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.turquoise))
                 holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.bills_icon_bg)
             }
+            "investments" -> {
+                Glide.with(holder.itemView.context).load(R.drawable.ic_investments).into(holder.categoryIcon)
+                holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.pink))
+                holder.categoryCard.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.investments_icon_bg)
+            }
             "others" -> {
                 Glide.with(holder.itemView.context).load(R.drawable.ic_others).into(holder.categoryIcon)
                 holder.categoryIcon.setColorFilter(ContextCompat.getColor(holder.itemView.context, R.color.grey))

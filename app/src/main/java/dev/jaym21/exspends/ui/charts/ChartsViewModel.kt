@@ -31,6 +31,7 @@ class ChartsViewModel @Inject constructor(private val expenseRepo: ExpenseReposi
     var totalRestaurant = 0.0
     var totalTravel = 0.0
     var totalBills = 0.0
+    var totalInvestments = 0.0
     var totalOthers = 0.0
 
     fun getAllExpenses() = viewModelScope.launch(Dispatchers.IO) {
@@ -47,6 +48,7 @@ class ChartsViewModel @Inject constructor(private val expenseRepo: ExpenseReposi
                 totalRestaurant = 0.0
                 totalTravel = 0.0
                 totalBills = 0.0
+                totalInvestments = 0.0
                 totalOthers = 0.0
 
                 //updating the total expense and total for categories
@@ -97,6 +99,9 @@ class ChartsViewModel @Inject constructor(private val expenseRepo: ExpenseReposi
                 }
                 "bills" -> {
                     totalBills += expense.amount
+                }
+                "investments" -> {
+                    totalInvestments += expense.amount
                 }
                 "others" -> {
                     totalOthers += expense.amount

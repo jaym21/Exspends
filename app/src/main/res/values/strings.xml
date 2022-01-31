@@ -27,4 +27,5 @@
     <string name="spent_on">Spent on</string>
     <string name="no_expenses_added">No expenses added</string>
     <string name="add_your_expenses_by_pressing_button">Add your expenses by pressing button</string>
+    <string name="investments">Investments</string>
 </resources>

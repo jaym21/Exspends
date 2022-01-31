@@ -212,7 +212,6 @@
         android:layout_marginBottom="25dp"
         android:visibility="gone"/>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddExpense"
         android:layout_width="wrap_content"

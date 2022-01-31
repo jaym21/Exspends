@@ -174,15 +174,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         }
     }
 
-    class CustomPercentFormatter: ValueFormatter() {
-        override fun getFormattedValue(value: Float): String {
-            if (value == 0.0f) {
-                return  ""
-            }
-            return "${"%.2f".format(value)}%"
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
