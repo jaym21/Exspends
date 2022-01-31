@@ -53,4 +53,10 @@ class DateConverterUtilsTest {
         val firstDayPreviousMonth = DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()
         assertNotNull(firstDayPreviousMonth)
     }
+
+    @Test
+    fun getPreviousYearTest() {
+        val previousYear = DateConverterUtils.getPreviousYear()
+        assertNotNull(previousYear)
+    }
 }

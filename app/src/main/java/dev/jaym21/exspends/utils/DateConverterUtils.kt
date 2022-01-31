@@ -68,5 +68,10 @@ class DateConverterUtils {
             cal[Calendar.DATE] = cal.getActualMinimum(Calendar.DAY_OF_MONTH)
             return cal.time.time
         }
+
+        fun getPreviousYear(): String {
+            val cal = Calendar.getInstance()
+            return (cal.get(Calendar.YEAR) - 1).toString()
+        }
     }
 }
