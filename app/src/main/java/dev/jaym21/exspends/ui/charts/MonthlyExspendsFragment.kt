@@ -99,7 +99,8 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
         }
 
         val xAxis = binding.barChart.xAxis
-        xAxis.granularity = 0f
+        xAxis.isGranularityEnabled = true
+        xAxis.granularity = 1f
         xAxis.setDrawGridLines(false)
         xAxis.setDrawAxisLine(false)
         xAxis.setCenterAxisLabels(false)
@@ -118,7 +119,6 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
         rightAxis.setDrawLabels(false)
 
         val entries = ArrayList<BarEntry>()
-
         var i = 0
         monthlyExpenses.forEach {
             entries.add(BarEntry(i.toFloat(), it.totalAmount.toFloat()))
@@ -129,22 +129,10 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
         barDataSet.color = ContextCompat.getColor(requireContext(), R.color.purple_200)
         barDataSet.setDrawValues(false)
         val barData = BarData(barDataSet)
+        barData.barWidth = 0.5f
         binding.barChart.data = barData
         binding.barChart.invalidate()
     }
-//
-//    inner class MyAxisFormatter : IndexAxisValueFormatter() {
-//
-//        override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-//            Log.d("TAGYOYO", "getAxisLabel: $value")
-//            val index = value.toInt()
-//            return if (index < xAxisLabel.size) {
-//                xAxisLabel[index]
-//            } else {
-//               return ""
-//            }
-//        }
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
