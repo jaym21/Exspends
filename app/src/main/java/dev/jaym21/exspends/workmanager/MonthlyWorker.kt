@@ -5,9 +5,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import dagger.assisted.Assisted
@@ -56,13 +59,23 @@ class MonthlyWorker @AssistedInject constructor(private val expenseRepo: Expense
                 totalExpenses += it.amount
             }
 
-            val currentMonthExpense = MonthlyExpense(
-                DateConverterUtils.getMonthFullName(DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()),
-                DateConverterUtils.getCurrentYear(),
-                totalExpenses,
-                System.currentTimeMillis()
-            )
-            monthlyRepo.insertMonthExpense(currentMonthExpense)
+            if (DateConverterUtils.getMonthFullName(System.currentTimeMillis()) == "January") {
+                val currentMonthExpense = MonthlyExpense(
+                    DateConverterUtils.getMonthFullName(DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()),
+                    DateConverterUtils.getPreviousYear(),
+                    totalExpenses,
+                    System.currentTimeMillis()
+                )
+                monthlyRepo.insertMonthExpense(currentMonthExpense)
+            } else {
+                val currentMonthExpense = MonthlyExpense(
+                    DateConverterUtils.getMonthFullName(DateConverterUtils.getFirstDayOfPreviousMonthTimestamp()),
+                    DateConverterUtils.getCurrentYear(),
+                    totalExpenses,
+                    System.currentTimeMillis()
+                )
+                monthlyRepo.insertMonthExpense(currentMonthExpense)
+            }
             expenseRepo.clearAllExpenses()
             showMonthlyTotalNotification(totalExpenses)
         }
@@ -71,24 +84,16 @@ class MonthlyWorker @AssistedInject constructor(private val expenseRepo: Expense
     private fun showMonthlyTotalNotification(totalExpense: Double) {
 
         val monthName = DateConverterUtils.getMonthFullName(DateConverterUtils.getFirstDayOfPreviousMonthTimestamp())
-
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(
-            applicationContext,
-            0,
-            intent,
-            PendingIntent.FLAG_ONE_SHOT
-        )
-
+        val messageText = "Your total expenditure for month of $monthName was ₹$totalExpense"
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
         val notificationBuilder = NotificationCompat.Builder(applicationContext, Constants.DEFAULT_NOTIFICATION_CHANNEL_ID)
+            .setColor(ContextCompat.getColor(applicationContext, R.color.bg_color))
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Exspends")
-            .setContentText("Your total expenditure for month of $monthName was ₹$totalExpense")
-            .setAutoCancel(true)
+            .setContentText(messageText)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(messageText))
+            .setAutoCancel(false)
             .setSound(defaultSoundUri)
-            .setContentIntent(pendingIntent)
 
         val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

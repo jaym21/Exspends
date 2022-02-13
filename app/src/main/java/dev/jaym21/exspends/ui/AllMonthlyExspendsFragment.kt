@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.adapters.MonthlyExspendsRVAdapter
-import dev.jaym21.exspends.data.models.MonthlyExpense
 import dev.jaym21.exspends.databinding.FragmentAllMonthlyExspendsBinding
 import dev.jaym21.exspends.stateflows.AllMonthlyExpensesState
 import dev.jaym21.exspends.ui.charts.ChartsViewModel
@@ -54,16 +53,6 @@ class AllMonthlyExspendsFragment : Fragment() {
         viewModel.getAllMonthlyExpenses()
 
         setUpRecyclerView()
-
-//        val sample = ArrayList<MonthlyExpense>()
-//        sample.add(MonthlyExpense("December", "2021", 5674.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("January", "2022", 81034.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("February", "2022", 235.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("March", "2022", 83534.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("April", "2022", 2423.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("May", "2022", 64546.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("June", "2022", 547676.0, System.currentTimeMillis()))
-//        sample.add(MonthlyExpense("July", "2022", 3453453.0, System.currentTimeMillis()))
 
         lifecycleScope.launchWhenCreated {
             viewModel.allMonthlyExpenses.collect {

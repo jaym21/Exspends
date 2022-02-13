@@ -57,6 +57,7 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         runBlocking {
             DataStoreManager(requireContext()).isFirstStartUp.asLiveData().observe(viewLifecycleOwner) { isFirstStartUp ->
                 if (isFirstStartUp) {
@@ -74,7 +75,6 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
         runBlocking {
             DataStoreManager(requireContext()).isFirstStartUp.asLiveData()
                 .observe(viewLifecycleOwner) { isFirstStartUp ->
-                    Log.d("TAGYOYO", "INSIDE2: $isFirstStartUp")
                     if (isFirstStartUp) {
                         lifecycleScope.launch {
                             DataStoreManager(requireContext()).saveIsFirstStartUp(false)
@@ -153,14 +153,23 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
                     }
                     is AllExpensesState.Empty -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.tabLayout.visibility = View.GONE
-                        binding.viewPager.visibility = View.GONE
                         binding.tvLatestExpensesText.visibility = View.GONE
                         binding.llAllExpenses.visibility = View.GONE
                         binding.rvLatestExpenses.visibility = View.GONE
                         binding.tvNoExpensesDataText.visibility = View.VISIBLE
                         binding.ivCurlingArrow.visibility = View.VISIBLE
                         binding.tvTotalExpenses.text = "₹0"
+                        if (viewModel.areMonthlyExpensesPresent) {
+                            binding.tabLayout.visibility = View.VISIBLE
+                            binding.viewPager.visibility = View.VISIBLE
+                            binding.tvNoExpensesDataText.visibility = View.GONE
+                            binding.ivCurlingArrow.visibility = View.GONE
+                        } else {
+                            binding.tabLayout.visibility = View.GONE
+                            binding.viewPager.visibility = View.GONE
+                            binding.tvNoExpensesDataText.visibility = View.VISIBLE
+                            binding.ivCurlingArrow.visibility = View.VISIBLE
+                        }
                     }
                 }
             }
