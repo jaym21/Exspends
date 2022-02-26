@@ -19,8 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.jaym21.exspends.R
 import dev.jaym21.exspends.databinding.FragmentCurrentMonthBinding
 import dev.jaym21.exspends.stateflows.AllExpensesState
-import dev.jaym21.exspends.ui.DashboardFragment
-import dev.jaym21.exspends.ui.ExpenseViewModel
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
@@ -81,36 +79,72 @@ class CurrentMonthFragment : Fragment() {
         binding.pieChart.setTouchEnabled(false)
         binding.pieChart.highlightValues(null)
         binding.pieChart.setEntryLabelColor(Color.WHITE)
-        binding.pieChart.setExtraOffsets(0f, 10f, 25f, 0f)
+        binding.pieChart.setExtraOffsets(10f, 10f, 55f, 10f)
         binding.pieChart.setEntryLabelTextSize(12f)
         binding.pieChart.setHoleColor(ContextCompat.getColor(requireContext(), R.color.bg_color))
         binding.pieChart.animateY(1400, Easing.EaseInOutQuad)
 
 
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry((viewModel.totalGroceries * 100/viewModel.totalExpenses).toFloat(), "Groceries"))
-        entries.add(PieEntry((viewModel.totalShopping * 100/viewModel.totalExpenses).toFloat(), "Shopping"))
-        entries.add(PieEntry((viewModel.totalSubscriptions * 100/viewModel.totalExpenses).toFloat(), "Subscriptions"))
-        entries.add(PieEntry((viewModel.totalEntertainment * 100/viewModel.totalExpenses).toFloat(), "Entertainment"))
-        entries.add(PieEntry((viewModel.totalRestaurant * 100/viewModel.totalExpenses).toFloat(), "Restaurant"))
-        entries.add(PieEntry((viewModel.totalTravel * 100/viewModel.totalExpenses).toFloat(), "Travel"))
-        entries.add(PieEntry((viewModel.totalBills * 100/viewModel.totalExpenses).toFloat(), "Bills"))
-        entries.add(PieEntry((viewModel.totalInvestments * 100/viewModel.totalExpenses).toFloat(), "Investments"))
-        entries.add(PieEntry((viewModel.totalOthers * 100/viewModel.totalExpenses).toFloat(), "Others"))
-
         val colors = ArrayList<Int>()
-        colors.add(ContextCompat.getColor(requireContext(), R.color.green))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.blue))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.orange))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.red))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.purple))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.yellow))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.turquoise))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.pink))
-        colors.add(ContextCompat.getColor(requireContext(), R.color.grey))
+
+        val groceriesValue = (viewModel.totalGroceries * 100/viewModel.totalExpenses).toFloat()
+        val shoppingValue = (viewModel.totalShopping * 100/viewModel.totalExpenses).toFloat()
+        val subscriptionsValue = (viewModel.totalSubscriptions * 100/viewModel.totalExpenses).toFloat()
+        val entertainmentValue = (viewModel.totalEntertainment * 100/viewModel.totalExpenses).toFloat()
+        val restaurantValue = (viewModel.totalRestaurant * 100/viewModel.totalExpenses).toFloat()
+        val travelValue = (viewModel.totalTravel * 100/viewModel.totalExpenses).toFloat()
+        val billsValue = (viewModel.totalBills * 100/viewModel.totalExpenses).toFloat()
+        val investmentsValue = (viewModel.totalInvestments * 100/viewModel.totalExpenses).toFloat()
+        val othersValue = (viewModel.totalOthers * 100/viewModel.totalExpenses).toFloat()
+
+
+        if (groceriesValue > 0.0f) {
+            entries.add(PieEntry(groceriesValue,"Groceries"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.green))
+        }
+        if (shoppingValue > 0.0f) {
+            entries.add(PieEntry(shoppingValue,"Shopping"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.blue))
+        }
+        if (subscriptionsValue > 0.0f) {
+            entries.add(PieEntry(subscriptionsValue, "Subscriptions"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.orange))
+        }
+        if (entertainmentValue > 0.0f) {
+            entries.add(PieEntry(entertainmentValue, "Entertainment"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.red))
+        }
+        if (restaurantValue > 0.0f) {
+            entries.add(PieEntry(restaurantValue, "Restaurant"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.purple))
+        }
+        if (travelValue > 0.0f) {
+            entries.add(PieEntry(travelValue, "Travel"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.yellow))
+        }
+        if (billsValue > 0.0f) {
+            entries.add(PieEntry(billsValue, "Bills"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.turquoise))
+        }
+        if (investmentsValue > 0.0f) {
+            entries.add(PieEntry(investmentsValue, "Investments"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.pink))
+        }
+        if (othersValue > 0.0f) {
+            entries.add(PieEntry(othersValue, "Others"))
+            colors.add(ContextCompat.getColor(requireContext(), R.color.grey))
+        }
+
 
         val dataSet = PieDataSet(entries, "")
         dataSet.colors = colors
+        dataSet.isUsingSliceColorAsValueLineColor = true
+        dataSet.xValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+        dataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+        dataSet.valueLinePart1OffsetPercentage = 100f
+        dataSet.valueLinePart1Length = 0.5f
+        dataSet.valueLinePart2Length = 0.2f
 
         val data = PieData(dataSet)
         data.setValueFormatter(CustomPercentFormatter())
