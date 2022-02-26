@@ -127,7 +127,7 @@ class CurrentMonthFragment : Fragment() {
         legend.setDrawInside(false)
         legend.xEntrySpace = 7f
         legend.yEntrySpace = 0f
-        legend.yOffset = 30f
+        legend.yOffset = 10f
         legend.textColor = ContextCompat.getColor(requireContext(), R.color.white_alpha_70)
         legend.textSize = 12f
 
