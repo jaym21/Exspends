@@ -4,6 +4,10 @@
 
 ## Features 💡
 - Exspends helps you keep track of your monthly expenditure.
+- Add your expenses of current month and keep track of them categorically.
+- Overview of you current month expenditure category using pie-chart.
+- Overview of your total month expenditure of previous months using bar-chart.
+- View, update or delete your expense details.
 
 ## Screenshots 📸
 </br>
