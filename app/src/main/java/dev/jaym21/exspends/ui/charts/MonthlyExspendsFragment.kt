@@ -91,6 +91,7 @@ class MonthlyExspendsFragment(private val navController: NavController) : Fragme
         binding.barChart.setDrawValueAboveBar(true)
         binding.barChart.description.isEnabled = false
         binding.barChart.legend.isEnabled = false
+        binding.barChart.setExtraOffsets(0f, 0f, 0f, 10f)
         binding.barChart.xAxis.textColor = ContextCompat.getColor(requireContext(), R.color.white)
         binding.barChart.axisLeft.textColor = ContextCompat.getColor(requireContext(), R.color.white)
 
