@@ -9,10 +9,10 @@ class DateConverterUtils {
 
     companion object {
 
-        fun getTimestamp(date: String): Long {
+        fun getTimestamp(date: String): Long? {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
             val parsedDate = sdf.parse(date)
-            return parsedDate.time
+            return parsedDate?.time
         }
 
         fun convertDateFormat(timestamp: Long): String {

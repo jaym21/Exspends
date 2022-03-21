@@ -57,9 +57,18 @@ class AddExpenseFragment : Fragment(), View.OnClickListener {
 
         binding.btnAddExpense.setOnClickListener {
             if (checkAllFieldsEntered()) {
-                val newExpense = Expense(binding.etExpenseTitle.text.toString(), binding.etExpenseAmount.text.toString().toDouble(), categorySelected!!, binding.etExpenseDate.text.toString(),  DateConverterUtils.getTimestamp(binding.etExpenseDate.text.toString()))
-                expenseViewModel.addExpense(newExpense)
-                navController.popBackStack()
+                val dateTimestamp = DateConverterUtils.getTimestamp(binding.etExpenseDate.text.toString())
+                if (dateTimestamp != null) {
+                    val newExpense = Expense(
+                        binding.etExpenseTitle.text.toString(),
+                        binding.etExpenseAmount.text.toString().toDouble(),
+                        categorySelected!!,
+                        binding.etExpenseDate.text.toString(),
+                        dateTimestamp
+                    )
+                    expenseViewModel.addExpense(newExpense)
+                    navController.popBackStack()
+                }
             }
         }
     }

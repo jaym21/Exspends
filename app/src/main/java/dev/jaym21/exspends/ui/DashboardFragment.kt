@@ -43,6 +43,8 @@ class DashboardFragment : Fragment(), IExpensesRVAdapter {
     private lateinit var chartsViewPagerAdapter: ChartsViewPagerAdapter
     private val charts = arrayOf("Current Month", "Monthly Expenses")
 
+    //TODO: Check wrong total expense on delete
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

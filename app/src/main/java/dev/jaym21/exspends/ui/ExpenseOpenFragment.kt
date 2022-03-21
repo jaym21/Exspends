@@ -71,8 +71,9 @@ class ExpenseOpenFragment : Fragment() {
             binding.tvExpenseTitle.text = expense!!.title
             binding.tvExpenseAmount.text = "₹${expense!!.amount}"
             val dateTimestamp = DateConverterUtils.getTimestamp(expense!!.date)
-            binding.tvExpenseDate.text = DateConverterUtils.convertDateFormat(dateTimestamp)
-
+            if (dateTimestamp != null) {
+                binding.tvExpenseDate.text = DateConverterUtils.convertDateFormat(dateTimestamp)
+            }
         } else {
             navController.popBackStack()
         }

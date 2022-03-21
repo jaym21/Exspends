@@ -49,8 +49,9 @@ class ExpensesRVAdapter(private val listener: IExpensesRVAdapter): ListAdapter<E
         holder.amount.text = "\u20B9${currentItem.amount}"
         holder.category.text = "${currentItem.category[0].uppercase()}${currentItem.category.substring(1)}"
         val dateTimestamp = DateConverterUtils.getTimestamp(currentItem.date)
-        holder.date.text = DateConverterUtils.convertDateFormat(dateTimestamp)
-
+        if (dateTimestamp != null) {
+            holder.date.text = DateConverterUtils.convertDateFormat(dateTimestamp)
+        }
         holder.root.setOnClickListener {
             listener.onExpenseClick(currentItem)
         }

@@ -72,9 +72,19 @@ class ExpenseUpdateFragment : Fragment(), View.OnClickListener {
 
             binding.btnUpdateExpense.setOnClickListener {
                 if (checkAllFieldsEntered()) {
-                    val updatedExpense = Expense(binding.etExpenseTitleUpdate.text.toString(), binding.etExpenseAmountUpdate.text.toString().toDouble(), categorySelected!!, binding.etExpenseDateUpdate.text.toString(),  DateConverterUtils.getTimestamp(binding.etExpenseDateUpdate.text.toString()), expense!!.id)
-                    viewModel.updateExpense(updatedExpense)
-                    navController.popBackStack(R.id.dashboardFragment, false)
+                    val dateTimestamp = DateConverterUtils.getTimestamp(binding.etExpenseDateUpdate.text.toString())
+                    if (dateTimestamp != null) {
+                        val updatedExpense = Expense(
+                            binding.etExpenseTitleUpdate.text.toString(),
+                            binding.etExpenseAmountUpdate.text.toString().toDouble(),
+                            categorySelected!!,
+                            binding.etExpenseDateUpdate.text.toString(),
+                            dateTimestamp,
+                            expense!!.id
+                        )
+                        viewModel.updateExpense(updatedExpense)
+                        navController.popBackStack(R.id.dashboardFragment, false)
+                    }
                 }
             }
         } else {
