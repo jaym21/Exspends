@@ -50,7 +50,7 @@ class ExpenseOpenFragment : Fragment() {
             navController.popBackStack()
         }
 
-        expense = arguments?.getSerializable("expense") as Expense
+        expense = arguments?.getParcelable("expense")
 
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 

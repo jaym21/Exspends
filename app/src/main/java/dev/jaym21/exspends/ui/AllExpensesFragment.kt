@@ -103,7 +103,7 @@ class AllExpensesFragment : Fragment(), IExpensesRVAdapter {
 
     override fun onExpenseClick(expense: Expense) {
         val bundle = Bundle()
-        bundle.putSerializable("expense", expense)
+        bundle.putParcelable("expense", expense)
         navController.navigate(R.id.action_allExpensesFragment_to_expenseOpenFragment, bundle)
     }
 }

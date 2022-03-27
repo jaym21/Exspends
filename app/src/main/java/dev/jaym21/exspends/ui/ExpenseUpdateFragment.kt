@@ -47,7 +47,7 @@ class ExpenseUpdateFragment : Fragment(), View.OnClickListener {
         //initializing navController
         navController = Navigation.findNavController(view)
 
-        expense = arguments?.getSerializable("expense") as Expense
+        expense = arguments?.getParcelable("expense")
 
         viewModel = ViewModelProvider(this).get(ExpenseViewModel::class.java)
 

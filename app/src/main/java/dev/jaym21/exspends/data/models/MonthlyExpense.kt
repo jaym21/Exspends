@@ -1,8 +1,10 @@
 package dev.jaym21.exspends.data.models
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Keep
 @Entity(tableName = "monthly_table")
 data class MonthlyExpense(
     val month: String,
