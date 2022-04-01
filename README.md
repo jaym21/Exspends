@@ -2,6 +2,10 @@
   <p align="center"><img src="screenshots/launcher_icon.jpg" height="300" /></p>
 <br/>
 
+## Download 
+
+<a href='https://play.google.com/store/apps/details?id=dev.jaym21.exspendsapp'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+
 ## Features 💡
 - Exspends helps you keep track of your monthly expenditure.
 - Add your expenses of current month and keep track of them categorically.
