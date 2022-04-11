@@ -12,6 +12,7 @@
 - Overview of you current month expenditure category using pie-chart.
 - Overview of your total month expenditure of previous months using bar-chart.
 - View, update or delete your expense details.
+- Get a notification with your total expenses in that month.
 
 ## Screenshots 📸
 </br>
